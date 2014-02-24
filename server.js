@@ -25,8 +25,7 @@ app.configure(function(){
 if(env === "development"){
     mongoose.connect('mongodb://localhost/pair');
 } else {
-    // TODO
-    //mongoose.connect('mongodb://mongohq_path/pair');
+    mongoose.connect('mongodb://app_usr:pair2pair@troup.mongohq.com:10094/app22501107');
 }
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error...'));
