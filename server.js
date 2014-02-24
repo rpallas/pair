@@ -21,7 +21,13 @@ app.configure(function(){
     app.use(express.static(__dirname + '/public'));
 });
 
-mongoose.connect('mongodb://localhost/pair');
+// Connection string
+if(env === "development"){
+    mongoose.connect('mongodb://localhost/pair');
+} else {
+    // TODO
+    //mongoose.connect('mongodb://mongohq_path/pair');
+}
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error...'));
 db.once('open', function callback(){
@@ -44,6 +50,6 @@ app.get('*', function(req, res){
     });
 });
 
-var port = 3030;
+var port = process.env.PORT || 3030;
 app.listen(port);
 console.log('Listening on port ' + port + '...');
