@@ -8,7 +8,8 @@ angular.module('app').controller('mvMainCtrl', function($scope) {
         {text: "stuff", published: new Date()}
     ];
     $scope.user = {
-        name: "Robbie Pallas",
+        name: "Jane Doe",
+        points: 2500,
         status: "available to pair now",
         languages: ["C#", "Javascript", "Php"],
         email: "robbie@test.com"
