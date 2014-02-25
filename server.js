@@ -1,47 +1,50 @@
 var express = require('express'),
     stylus = require('stylus'),
-    mongoose = require('mongoose');
+    mongoose = require('mongoose'),
+    passport = require('passport'),
+    LocalStrategy = require('passport-local').Strategy,
+    env = process.env.NODE_ENV = process.env.NODE_ENV || "development",
+    app = express(),
+    config = require('./server/config/config')[env];
 
-var env = process.env.NODE_ENV = process.env.NODE_ENV || "development";
-var app = express();
+// Configure express
+require('./server/config/express')(app, config);
 
-function compile(str, path){
-    return stylus(str).set('filename', path);
-}
+// Connect to DB
+require('./server/config/mongoose')(config);
 
-app.configure(function(){
-    app.set('views', __dirname + '/server/views');
-    app.set('view engine', 'jade');
-    app.use(express.logger('dev'));
-    app.use(express.bodyParser());
-    app.use(stylus.middleware({
-        src: __dirname + '/public',
-        compile: compile
-    }));
-    app.use(express.static(__dirname + '/public'));
+var User = mongoose.model('User');
+passport.use(new LocalStrategy(
+    function(username, password, done){
+        User.findOne({username: username}).exec(function(err, user){
+            if(user){
+                return done(null, user);
+            } else {
+                return done(null, false);
+            }
+        });
+    }
+));
+
+passport.serializeUser(function(user, done){
+    if(user) {
+        done(null, user._id);
+    }
 });
 
-// Connection string
-if(env === "development"){
-    mongoose.connect('mongodb://localhost/pair');
-} else {
-    mongoose.connect('mongodb://app_usr:pair2pair@troup.mongohq.com:10094/app22501107');
-}
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error...'));
-db.once('open', function callback(){
-    console.log('pair db opened');
+passport.deserializeUser(function(id, done){
+    User.findOne({_id: id}).exec(function(err, user){
+        if(user) {
+            done(null, user);
+        } else {
+            done(null, false);
+        }
+    });
 });
 
+// Setup the routes
+require('./server/config/routes')(app);
 
-app.get('/partials/:partialPath', function(req, res){
-    res.render('partials/' + req.params.partialPath);
-});
-
-app.get('*', function(req, res){
-    res.render('index');
-});
-
-var port = process.env.PORT || 3030;
-app.listen(port);
-console.log('Listening on port ' + port + '...');
+// Start the server
+app.listen(config.port);
+console.log('Listening on port ' + config.port + '...');
