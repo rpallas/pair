@@ -1,0 +1,14 @@
+panel.panel-primary
+    .panel-heading.text-center Profile
+    .panel-body
+        .row
+            .col-md-6 Name:
+            .col-md-6 {{ user.name }}
+        .row
+            .col-md-6 Status:
+            .col-md-6 {{ user.status }}
+        .row
+            .col-md-6 Languages:
+            .col-md-6
+                ul
+                    li(ng-repeat="lang in user.languages") {{ lang }}

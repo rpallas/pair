@@ -1,0 +1,6 @@
+panel.panel-primary
+    .panel-heading.text-center Activity Feed
+    .panel-body
+        .row(ng-repeat="item in activityFeedItems | orderBy")
+            .col-lg-9 {{item.text}}
+            .col-lg-3 {{item.published | date:'MMM d'}}
