@@ -1,5 +1,5 @@
 .navbar-right(ng-controller="mvNavbarLoginCtrl")
-    form.navbar-form
+    form.navbar-form(ng-hide="identity.isAuthenticated()")
         .form-group
             input.form-control.input-sm(placeholder="Email", ng-model="username")
         .form-group
