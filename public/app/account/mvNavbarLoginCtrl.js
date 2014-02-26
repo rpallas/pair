@@ -1,4 +1,4 @@
-angular.module('app').controller('mvNavbarLoginCtrl', function($scope, $http, mvIdentity, mvNotifier, mvAuth) {
+angular.module('app').controller('mvNavbarLoginCtrl', function($scope, $http, mvIdentity, mvNotifier, mvAuth, $location) {
     $scope.identity = mvIdentity;
     $scope.signin = function(username, password) {
         mvAuth.authenticateUser(username, password)
@@ -9,5 +9,13 @@ angular.module('app').controller('mvNavbarLoginCtrl', function($scope, $http, mv
                     mvNotifier.notify('Login failed - Incorrect username or password');
                 }
             });
+    };
+    $scope.signout = function(){
+        mvAuth.logoutUser().then(function(){
+            $scope.username = "";
+            $scope.password = "";
+            mvNotifier.notify("You are now signed out");
+            $location.path("/");
+        });
     }
 });
