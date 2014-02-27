@@ -6,7 +6,7 @@ angular.module('app').controller('mvNavbarLoginCtrl', function($scope, $http, mv
                 if(success){
                     mvNotifier.notify('You have been successfully signed in');
                 } else {
-                    mvNotifier.notify('Login failed - Incorrect username or password');
+                    mvNotifier.error('Login failed - Incorrect username or password');
                 }
             });
     };

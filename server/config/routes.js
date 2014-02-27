@@ -5,7 +5,7 @@ var auth = require('./auth'),
 
 module.exports = function(app){
 
-    app.get('/api/users', auth.requiresRole('admin'), users.getUsers);
+    app.get('/api/users', auth.requiresApiLogin, users.getUsers);
     app.post('/api/users', users.createUser);
     app.put('/api/users', users.updateUser);
 
@@ -18,6 +18,10 @@ module.exports = function(app){
     app.post('/logout', function(req, res){
         req.logout();
         res.end();
+    });
+
+    app.all('/api/*', function(req, res){
+        res.send(404);
     });
 
     app.get('*', function(req, res){

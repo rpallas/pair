@@ -10,7 +10,7 @@ angular.module('app').factory('mvIdentity', function($window, mvUser){
             return !!this.currentUser;
         },
         isAuthorised: function(role) {
-            return !!this.currentUser && this.currentUser.roles.indexOf('admin') > -1;
+            return !!this.currentUser && this.currentUser.roles.indexOf(role) > -1;
         }
     }
 });
