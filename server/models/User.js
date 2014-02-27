@@ -30,13 +30,13 @@ function createDefaultUsers(){
             var salt, hash;
             salt = encrypt.createSalt();
             hash = encrypt.hashPwd(salt, 'rob');
-            User.create({firstName: "Robbie", lastName: "Pallas", username:"rob", salt: salt, hashed_pwd: hash, roles: ['admin'] });
+            User.create({firstName: "Robbie", lastName: "Pallas", username:"robbie@test.com", salt: salt, hashed_pwd: hash, roles: ['admin'] });
             salt = encrypt.createSalt();
             hash = encrypt.hashPwd(salt, 'chris');
-            User.create({firstName: "Chris", lastName: "Shepherd", username:"chris", salt: salt, hashed_pwd: hash, roles: [] });
+            User.create({firstName: "Chris", lastName: "Shepherd", username:"chris@test.com", salt: salt, hashed_pwd: hash, roles: [] });
             salt = encrypt.createSalt();
             hash = encrypt.hashPwd(salt, 'mark');
-            User.create({firstName: "Mark", lastName: "Cormack", username:"mark", salt: salt, hashed_pwd: hash});
+            User.create({firstName: "Mark", lastName: "Cormack", username:"mark@test.com", salt: salt, hashed_pwd: hash});
         }
     });
 }
