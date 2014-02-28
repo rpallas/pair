@@ -1,4 +1,4 @@
-angular.module('app').controller('mvBrowseCtrl', function($scope, mvUser){
+angular.module('app').controller('mvUserListCtrl', function($scope, mvUser){
     $scope.users = mvUser.query();
 
     $scope.sortOptions = [
