@@ -14,7 +14,8 @@
                 th Skills
             tbody
                 tr(ng-repeat="user in users | filter:searchText | orderBy:sortOrder")
-                    td {{ user.firstName + " " + user.lastName }}
+                    td
+                        a(href="/browse/{{ user._id }}") {{ user.firstName + " " + user.lastName }}
                     td {{ user.status }}
                     td {{ user.points }}
                     td {{ user.skills.join(', ') }}

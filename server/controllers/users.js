@@ -7,6 +7,12 @@ exports.getUsers = function(req, res){
     });
 };
 
+exports.getUserById = function(req, res){
+    User.findOne({_id: req.params.id}).exec(function(err, user){
+        res.send(user);
+    });
+};
+
 exports.createUser = function(req, res, next){
     var userData = req.body;
     userData.username = userData.username.toLowerCase(); // Prevents duplicate users with different casing in email address

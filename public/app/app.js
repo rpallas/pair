@@ -28,6 +28,7 @@ angular.module('app').config(function($routeProvider, $locationProvider){
         .when('/signup', { templateUrl: '/partials/account/signup', controller: 'mvSignupCtrl' })
         .when('/profile', { templateUrl: '/partials/account/profile', controller: 'mvProfileCtrl', resolve: routeRoleChecks.user })
         .when('/browse', { templateUrl: '/partials/users/browse', controller: 'mvBrowseCtrl', resolve: routeRoleChecks.user })
+        .when('/browse/:id', { templateUrl: '/partials/users/browse-detail', controller: 'mvBrowseDetailCtrl', resolve: routeRoleChecks.user })
 
 });
 
