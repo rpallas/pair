@@ -7,6 +7,10 @@ module.exports = function(config) {
     // base path, that will be used to resolve files and exclude
     basePath: '',
 
+      // Coverage
+    preprocessors : {
+      'public/app/**/*.js': ['coverage']
+    },
 
     // frameworks to use
     frameworks: ['mocha', 'chai', 'sinon-chai'],
@@ -17,6 +21,8 @@ module.exports = function(config) {
       'public/vendor/angular/angular.js',
       'public/vendor/angular-resource/angular-resource.js',
       'public/vendor/angular-mocks/angular-mocks.js',
+      'public/vendor/mocha-as-promised/mocha-as-promised.js',
+      'public/vendor/chai-as-promised/chai-as-promised.js',
       'test/test-app.js',
       'public/app/**/*.js',
       'test/tests/**/*.js'
@@ -31,7 +37,7 @@ module.exports = function(config) {
 
     // test results reporter to use
     // possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
-    reporters: ['spec'],
+    reporters: ['spec', 'coverage'],
 
 
     // web server port
