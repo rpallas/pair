@@ -14,10 +14,8 @@ describe('mvAdminUserListCtrl', function(){
     it('should set the scope users to the results of mvUser.query', function(){
         var mockUsersData = {};
         mockUser.query.returns(mockUsersData);
-
-        var dependencies = { $scope: scope, mvUser: mockUser },
-            controller = $controllerCtr('mvAdminUserListCtrl', dependencies);
-
+        var dependencies = { $scope: scope, mvUser: mockUser };
+        $controllerCtr('mvAdminUserListCtrl', dependencies);
         expect(scope.users).to.equal(mockUsersData);
     });
 
