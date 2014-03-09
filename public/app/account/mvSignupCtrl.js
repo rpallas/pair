@@ -1,4 +1,4 @@
-angular.module('app').controller('mvSignupCtrl', function($scope, mvUser, mvNotifier, $location, mvAuth){
+angular.module('app').controller('mvSignupCtrl', function($scope, mvNotifier, $location, mvAuth){
 
     $scope.signup = function(){
         var newUserData = {
