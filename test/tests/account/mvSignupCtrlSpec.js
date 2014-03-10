@@ -27,7 +27,7 @@ describe('mvProfileCtrl', function(){
         });
     }));
 
-    describe('singup', function(){
+    describe('signup', function(){
 
         it('should call mvAuth.createUser including the email (username)', function(){
             scope.signup();
