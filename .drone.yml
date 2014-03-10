@@ -1,6 +1,4 @@
 image: bradrydzewski/node:0.10
-env:
-  - GOPATH=/var/cache/drone
 script:
   - karma start
 notify:
