@@ -1,6 +1,6 @@
 image: bradrydzewski/node:0.10
 script:
-  - karma start
+  - karma run
 notify:
   email:
     recipients:
