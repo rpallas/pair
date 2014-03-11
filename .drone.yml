@@ -1,2 +1,7 @@
 image: bradrydzewski/node:0.10
-
+script:
+  - karma run
+notify:
+  email:
+    recipients:
+      - rpallas@gmail.com
