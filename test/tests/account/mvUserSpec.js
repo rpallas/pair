@@ -1,3 +1,4 @@
+'use strict';
 
 describe('mvUser', function(){
     beforeEach(module('app'));

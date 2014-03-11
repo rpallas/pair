@@ -1,0 +1,11 @@
+.container
+    h1 {{ user.firstName + " " + user.lastName }}
+    .row
+        .col-md-6
+            h3(ng-show="user.isAdmin()") Admin
+            h3 Status: {{ user.status }}
+        .col-md-6
+            .panel.panel-primary
+                .panel-heading Skills
+                .panel-body
+                    div(ng-repeat="skill in user.skills") {{ skill }}

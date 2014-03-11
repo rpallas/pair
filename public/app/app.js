@@ -24,10 +24,11 @@ angular.module('app').config(function($routeProvider, $locationProvider){
     // Register the routes
     $routeProvider
         .when('/', { templateUrl: '/partials/main/main', controller: 'mvMainCtrl'})
-        .when('/admin/users', { templateUrl: '/partials/admin/user-list', controller: 'mvUserListCtrl', resolve: routeRoleChecks.admin })
+        .when('/admin/users', { templateUrl: '/partials/admin/user-list', controller: 'mvAdminUserListCtrl', resolve: routeRoleChecks.admin })
         .when('/signup', { templateUrl: '/partials/account/signup', controller: 'mvSignupCtrl' })
         .when('/profile', { templateUrl: '/partials/account/profile', controller: 'mvProfileCtrl', resolve: routeRoleChecks.user })
-        .when('/browse', { templateUrl: '/partials/users/browse', controller: 'mvBrowseCtrl', resolve: routeRoleChecks.user })
+        .when('/users', { templateUrl: '/partials/users/user-list', controller: 'mvUserListCtrl', resolve: routeRoleChecks.user })
+        .when('/users/:id', { templateUrl: '/partials/users/user-detail', controller: 'mvUserDetailCtrl', resolve: routeRoleChecks.user })
 
 });
 

@@ -1,7 +1,14 @@
-angular.module('app').controller('mvNavbarLoginCtrl', function($scope, $http, mvIdentity, mvNotifier, mvAuth, $location) {
+angular.module('app').controller('mvNavbarLoginCtrl', function($scope, mvIdentity, mvNotifier, mvAuth, $location) {
     $scope.identity = mvIdentity;
+
+    /**
+     * Authenticates the given credentials and notifies the user
+     * of success or failure
+     * @param username The users username
+     * @param password The users password
+     */
     $scope.signin = function(username, password) {
-        mvAuth.authenticateUser(username, password)
+        return mvAuth.authenticateUser(username, password)
             .then(function(success){
                 if(success){
                     mvNotifier.notify('You have been successfully signed in');
@@ -10,12 +17,17 @@ angular.module('app').controller('mvNavbarLoginCtrl', function($scope, $http, mv
                 }
             });
     };
+
+    /**
+     *
+     */
     $scope.signout = function(){
-        mvAuth.logoutUser().then(function(){
+        return mvAuth.logoutUser().then(function(){
             $scope.username = "";
             $scope.password = "";
-            mvNotifier.notify("You are now signed out");
-            $location.path("/");
+            mvNotifier.notify('You are now signed out');
+            $location.path('/');
         });
-    }
+    };
+
 });

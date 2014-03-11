@@ -6,6 +6,7 @@ var auth = require('./auth'),
 module.exports = function(app){
 
     app.get('/api/users', auth.requiresApiLogin, users.getUsers);
+    app.get('/api/users/:id', auth.requiresApiLogin, users.getUserById);
     app.post('/api/users', users.createUser);
     app.put('/api/users', users.updateUser);
 
@@ -29,4 +30,5 @@ module.exports = function(app){
             bootstrappedUser: req.user
         });
     });
+
 };
