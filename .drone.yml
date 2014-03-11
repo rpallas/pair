@@ -1,4 +1,4 @@
-image: bradrydzewski/php:5.5
+image: bradrydzewski/node:0.10
 script:
   - karma run
 notify:
