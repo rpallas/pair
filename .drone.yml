@@ -1,5 +1,6 @@
 image: tiokksar/karma
 script:
+  - npm install
   - karma run
 notify:
   email:
