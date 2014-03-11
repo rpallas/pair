@@ -4,6 +4,9 @@ script:
   - bower install --allow-root
   - npm install
   - karma start --single-run
+deploy:
+  heroku:
+    app: nameless-cove-8544
 notify:
   email:
     recipients:
