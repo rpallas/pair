@@ -1,4 +1,4 @@
-image: bradrydzewski/node:0.10
+image: tiokksar/karma
 script:
   - karma run
 notify:
