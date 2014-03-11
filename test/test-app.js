@@ -2,7 +2,7 @@ angular.module('app', ['ngResource']);
 
 var toastr = {};
 
-// Polyfil for Function.prototype.bind as its missing from the current PhantomJS (https://github.com/ariya/phantomjs/issues/10522)
+// Polyfill for Function.prototype.bind as its missing from the current PhantomJS (https://github.com/ariya/phantomjs/issues/10522)
 if (!Function.prototype.bind) {
     Function.prototype.bind = function (oThis) {
         if (typeof this !== "function") {
