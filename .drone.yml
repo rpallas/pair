@@ -1,7 +1,5 @@
 image: tiokksar/karma
 script:
-  - npm install -g bower
-  - bower install --allow-root
   - npm install
   - karma start --single-run
 deploy:
