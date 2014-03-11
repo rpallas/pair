@@ -1,6 +1,5 @@
-image: bradrydzewski/node:0.10
+image: tiokksar/karma
 script:
-  - npm install -g karma
   - karma run
 notify:
   email:
