@@ -5,6 +5,7 @@ script:
 deploy:
   heroku:
     app: nameless-cove-8544
+    branch: master
 notify:
   email:
     recipients:
