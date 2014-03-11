@@ -1,5 +1,7 @@
 image: tiokksar/karma
 script:
+  - npm install -g bower
+  - bower install
   - npm install
   - karma start --single-run
 notify:
