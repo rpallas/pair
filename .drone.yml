@@ -1,6 +1,7 @@
 image: tiokksar/karma
 script:
   - npm install
+  - npm install karma-mocha
   - karma run
 notify:
   email:
