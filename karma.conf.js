@@ -23,7 +23,7 @@ module.exports = function(config) {
       'public/vendor/angular-mocks/angular-mocks.js',
       'public/vendor/mocha-as-promised/mocha-as-promised.js',
       'public/vendor/chai-as-promised/chai-as-promised.js',
-      'test/test-app.js',
+      'test/tests/public/test-app.js',
       'public/app/**/*.js',
       'test/tests/**/*.js'
     ],
