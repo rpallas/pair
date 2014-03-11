@@ -1,4 +1,4 @@
-image: tiokksar/karma
+image: bradrydzewski/ubuntu
 script:
   - karma run
 notify:
