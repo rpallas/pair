@@ -1,12 +1,10 @@
 image: tiokksar/karma
 script:
-  - npm install -g bower
-  - bower install --allow-root
   - npm install
   - karma start --single-run
 deploy:
   heroku:
-    app: nameless-cove-8544
+    app: paired-dev
 notify:
   email:
     recipients:
