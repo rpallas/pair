@@ -4,8 +4,7 @@ script:
   - karma start --single-run
 deploy:
   heroku:
-    app: nameless-cove-8544
-    branch: master
+    app: paired-dev
 notify:
   email:
     recipients:
