@@ -10,5 +10,5 @@ notify:
   email:
     recipients:
       - rpallas@gmail.com
-cache:
-  - .npm
+#cache:
+#  - .npm
