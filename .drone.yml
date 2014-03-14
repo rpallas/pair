@@ -5,6 +5,8 @@ script:
 deploy:
   heroku:
     app: paired-dev
+    branch: develop
+    force: true
 notify:
   email:
     recipients:
