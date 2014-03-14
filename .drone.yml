@@ -5,7 +5,11 @@ script:
 deploy:
   heroku:
     app: paired-dev
+    branch: develop
+    force: true
 notify:
   email:
     recipients:
       - rpallas@gmail.com
+#cache:
+#  - .npm
