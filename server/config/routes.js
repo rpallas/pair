@@ -3,7 +3,7 @@ var auth = require('./auth'),
     mongoose = require('mongoose'),
     User = mongoose.model('User');
 
-module.exports = function(app){
+module.exports = function(app, config){
 
     app.get('/api/users', auth.requiresApiLogin, users.getUsers);
     app.get('/api/users/:id', auth.requiresApiLogin, users.getUserById);
@@ -28,7 +28,7 @@ module.exports = function(app){
     app.get('*', function(req, res){
         res.render('index', {
             bootstrappedUser: req.user,
-            version: '0.0.8'
+            version: config.version
         });
     });
 

@@ -14,7 +14,7 @@ require('./server/config/mongoose')(config);
 require('./server/config/passport')();
 
 // Setup the routes
-require('./server/config/routes')(app);
+require('./server/config/routes')(app, config);
 
 // Start the server
 app.listen(config.port);
