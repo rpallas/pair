@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('app').controller('mvNavbarLoginCtrl', function($scope, mvIdentity, mvNotifier, mvAuth, $location) {
     $scope.identity = mvIdentity;
 

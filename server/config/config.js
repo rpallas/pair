@@ -1,3 +1,5 @@
+'use strict';
+
 var path = require('path');
 var rootPath = path.normalize(__dirname + "/../../");
 var version = '0.0.9';

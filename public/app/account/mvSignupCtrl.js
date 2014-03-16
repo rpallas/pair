@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('app').controller('mvSignupCtrl', function($scope, mvNotifier, $location, mvAuth){
 
     $scope.signup = function(){

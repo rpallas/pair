@@ -1,3 +1,5 @@
+'use strict';
+
 var auth = require('./auth'),
     users = require('../controllers/users'),
     mongoose = require('mongoose'),

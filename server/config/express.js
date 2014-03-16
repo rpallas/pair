@@ -1,3 +1,5 @@
+'use strict';
+
 var express = require('express'),
     stylus = require('stylus'),
     passport = require('passport');

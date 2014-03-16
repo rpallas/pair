@@ -38,7 +38,7 @@
 
 
     // ECMAScript 5.
-    "strict"        : false,  // Require `use strict` pragma  in every file.
+    "strict"        : true,  // Require `use strict` pragma  in every file.
     "globalstrict"  : false,  // Allow global "use strict" (also enables 'strict').
 
 

@@ -1,3 +1,5 @@
+'use strict';
+
 var passport = require('passport');
 
 exports.authenticate = function(req, res, next){

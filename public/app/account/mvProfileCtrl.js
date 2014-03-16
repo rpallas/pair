@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('app').controller('mvProfileCtrl', function($scope, mvAuth, mvIdentity, mvNotifier){
 
     $scope.email = mvIdentity.currentUser.username;
