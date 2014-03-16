@@ -14,13 +14,13 @@ module.exports = {
     },
     development: {
         rootPath: rootPath,
-        db: 'mongodb://app_usr:pair2pair@troup.mongohq.com:10094/app22501107',
+        db: 'mongodb://app_usr:pair2pair@lennon.mongohq.com:10011/app22993075',
         port: process.env.PORT || 80,
         version: version
     },
     staging: {
         rootPath: rootPath,
-        db: 'mongodb://app_usr:pair2pair@troup.mongohq.com:10094/app22501107',
+        db: 'mongodb://app_usr:pair2pair@lennon.mongohq.com:10089/app23065150',
         port: process.env.PORT || 80,
         version: version
     },
