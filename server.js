@@ -1,6 +1,6 @@
 var express = require('express'),
     stylus = require('stylus'),
-    env = process.env.NODE_ENV = process.env.NODE_ENV || "development",
+    env = process.env.NODE_ENV = process.env.NODE_ENV || "local",
     app = express(),
     config = require('./server/config/config')[env];
 

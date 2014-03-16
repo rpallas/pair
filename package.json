@@ -1,10 +1,10 @@
 {
   "name": "pair",
-  "version": "0.0.0",
+  "version": "0.0.9",
   "description": "Pair - Connecting developers",
   "main": "index.js",
   "scripts": {
-    "test": "karma run"
+    "test": "karma start --single-run"
   },
   "engines": {
     "node": "0.10.x",
