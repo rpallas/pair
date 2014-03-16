@@ -31,16 +31,19 @@ module.exports = function(grunt) {
             options: {
                 jshintrc: ".jshintrc"
             }
+        },
+        uglify: {
+            options: {
+                banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n',
+                compress: {
+                    drop_console: true
+                }
+            },
+            build: {
+                src: 'public/app/**/*.js',
+                dest: 'public/build/<%= pkg.name %>.min.js'
+            }
         }
-//        uglify: {
-//            options: {
-//                banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
-//            },
-//            build: {
-//                src: 'src/<%= pkg.name %>.js',
-//                dest: 'build/<%= pkg.name %>.min.js'
-//            }
-//        }
     });
 
     // Load the plugins.
@@ -48,9 +51,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks("grunt-contrib-jshint");
     grunt.loadNpmTasks('grunt-karma');
     grunt.registerTask("test", ["karma"]);
-//    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
 
     // Default task(s).
-    grunt.registerTask('default', ['test', 'jshint']);
+    grunt.registerTask('default', ['test', 'jshint', 'uglify']);
 
 };
