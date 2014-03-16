@@ -1,7 +1,8 @@
 image: tiokksar/karma
 script:
   - npm install
-  - karma start --single-run
+  - grunt
+#  - karma start --single-run
 deploy:
   heroku:
     app: paired-dev
