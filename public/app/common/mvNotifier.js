@@ -10,5 +10,5 @@ angular.module('app').factory('mvNotifier', function(mvToastr, $log){
             mvToastr.error(msg);
             $log.error(msg);
         }
-    }
+    };
 });

@@ -7,5 +7,5 @@ angular.module('app').factory('mvUser', function($resource){
         return this.roles && this.roles.indexOf('admin') > -1;
     };
 
-    return UserResource
+    return UserResource;
 });

@@ -28,7 +28,7 @@ angular.module('app').config(function($routeProvider, $locationProvider){
         .when('/signup', { templateUrl: '/partials/account/signup', controller: 'mvSignupCtrl' })
         .when('/profile', { templateUrl: '/partials/account/profile', controller: 'mvProfileCtrl', resolve: routeRoleChecks.user })
         .when('/users', { templateUrl: '/partials/users/user-list', controller: 'mvUserListCtrl', resolve: routeRoleChecks.user })
-        .when('/users/:id', { templateUrl: '/partials/users/user-detail', controller: 'mvUserDetailCtrl', resolve: routeRoleChecks.user })
+        .when('/users/:id', { templateUrl: '/partials/users/user-detail', controller: 'mvUserDetailCtrl', resolve: routeRoleChecks.user });
 
 });
 

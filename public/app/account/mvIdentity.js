@@ -12,5 +12,5 @@ angular.module('app').factory('mvIdentity', function($window, mvUser){
         isAuthorised: function(role) {
             return !!this.currentUser && this.currentUser.roles.indexOf(role) > -1;
         }
-    }
+    };
 });

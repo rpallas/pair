@@ -2,7 +2,7 @@
 'use strict';
 
 describe('mvProfileCtrl', function(){
-    var $controllerCtr, scope, mockMvAuth, mockMvNotifier, mockMvIdentity, dfd, location;
+    var $controllerCtr, scope, mockMvAuth, mockMvNotifier, dfd, location;
 
     beforeEach(module('app'));
 
@@ -15,7 +15,7 @@ describe('mvProfileCtrl', function(){
         scope.firstName = 'fname';
         scope.lastName = 'lname';
         scope.email = 'email';
-        scope.password = 'pass'
+        scope.password = 'pass';
 
         mockMvAuth = sinon.stub({ createUser: function(){} });
         mockMvAuth.createUser.returns(dfd.promise);

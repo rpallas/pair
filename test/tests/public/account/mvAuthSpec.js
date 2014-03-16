@@ -22,7 +22,7 @@ describe('mvAuth', function(){
             mockUserUpdate = sinon.stub(mvUser, "update");
             User = mvUser;
             mockMvIdentity.currentUser = new User();
-        })
+        });
     });
 
     afterEach(function(){
