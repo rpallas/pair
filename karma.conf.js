@@ -25,7 +25,7 @@ module.exports = function(config) {
       'public/vendor/chai-as-promised/chai-as-promised.js',
       'test/tests/public/test-app.js',
       'public/app/**/*.js',
-      'test/tests/**/*.js'
+      'test/tests/public/**/*.js'
     ],
 
 
