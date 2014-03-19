@@ -1,7 +1,7 @@
 'use strict';
 
 var path = require('path'),
-    packageJson = require('./package.json'),
+    packageJson = require('../../package.json'),
     rootPath = path.normalize(__dirname + "/../../"),
     version = packageJson.version;
 
