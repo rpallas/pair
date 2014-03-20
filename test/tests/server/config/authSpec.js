@@ -37,6 +37,19 @@ describe('auth', function () {
             passport.authenticate.restore();
         });
 
+        it('should send a failed response if these is no username in request body', function(){
+            sinon.stub(passport, 'authenticate', function(type, callback){
+                callback(null, undefined);
+                return passportAuthSpy;
+            });
+            reqStub = sinon.stub({
+                body: { },
+                logIn: function(user, callback){ callback(); }
+            });
+            auth.authenticate(reqStub, resStub, nextSpy);
+            expect(resStub.send.calledWith({ success:false })).to.be.true;
+        });
+
         it('should lowercase the provided username for comparison', function(done){
             fnDone = done;
             sinon.stub(passport, 'authenticate', function(type, callback){
