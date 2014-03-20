@@ -1,4 +1,5 @@
 [![Build Status](http://192.81.221.113/github.com/rpallas/pair/status.png?branch=develop)](http://192.81.221.113/github.com/rpallas/pair)
+[![Code Climate](https://codeclimate.com/repos/532a604be30ba013f80018a5/badges/e2434002976dab0f711d/gpa.png)](https://codeclimate.com/repos/532a604be30ba013f80018a5/feed)
 pair
 ====
 
