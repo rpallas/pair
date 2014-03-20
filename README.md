@@ -12,6 +12,8 @@ Check the [wiki](https://github.com/rpallas/pair/wiki)
 
 > **Staging site**: http://paired-stage.herokuapp.com
 
+Go look at the [huboard](https://huboard.com/rpallas/pair) to pick up [issues](https://github.com/rpallas/pair/issues) or add new ones.
+
 Development Guide
 =================
 
