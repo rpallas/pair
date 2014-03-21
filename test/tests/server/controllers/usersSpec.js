@@ -92,6 +92,18 @@ describe('users controller', function (){
             expect(resStub.end.notCalled).to.be.true;
         });
 
+        it('should set status of 400 if there is an error saving', function(done){
+            reqStub.user.save = function(cb){ cb("error"); done(); };
+            users.updateUser(reqStub, resStub);
+            expect(resStub.status.args[0][0]).to.equal(400);
+        });
+
+        it('should send a reason to the response if there is an error saving', function(done){
+            reqStub.user.save = function(cb){ cb("error"); done(); };
+            users.updateUser(reqStub, resStub);
+            expect(resStub.send.args[0][0]).to.deep.equal({reason:"error"});
+        });
+
     });
 
 });
