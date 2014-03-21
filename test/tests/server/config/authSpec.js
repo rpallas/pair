@@ -21,7 +21,6 @@ describe('auth', function () {
         nextSpy = sinon.spy();
     });
 
-
     describe('authenticate', function(){
         var fnDone, passportAuthSpy;
 
@@ -37,7 +36,7 @@ describe('auth', function () {
             passport.authenticate.restore();
         });
 
-        it('should send a failed response if these is no username in request body', function(){
+        it('should send a failed response if there is no username in request body', function(){
             sinon.stub(passport, 'authenticate', function(type, callback){
                 callback(null, undefined);
                 return passportAuthSpy;
