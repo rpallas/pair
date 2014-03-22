@@ -1,9 +1,12 @@
 image: tiokksar/karma
 script:
+  # workaround for cache, see https://github.com/drone/drone/issues/147
+  - mkdir -p /tmp/npm
+  - sudo chown -R ubuntu:ubuntu /tmp/npm
+  - npm config set cache /tmp/npm
+  # actual script:
   - npm install grunt-cli -g
-  - npm install
-  - grunt
-#  - karma start --single-run
+  - npm test
 deploy:
   heroku:
     app: paired-dev
@@ -12,5 +15,5 @@ notify:
   email:
     recipients:
       - rpallas@gmail.com
-#cache:
-#  - .npm
+cache:
+  - /tmp/npm

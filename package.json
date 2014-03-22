@@ -4,7 +4,7 @@
   "description": "Pair - Connecting developers",
   "main": "index.js",
   "scripts": {
-    "test": "karma start --single-run"
+    "test": "grunt"
   },
   "engines": {
     "node": "0.10.x",
