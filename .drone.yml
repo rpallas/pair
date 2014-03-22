@@ -5,7 +5,8 @@ script:
   - npm config set cache /tmp/npm
   # actual script:
   - npm install grunt-cli -g
-  - npm test
+  - npm install
+  - grunt
 deploy:
   heroku:
     app: paired-dev
