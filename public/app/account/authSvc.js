@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app').factory('mvAuth', function($http, mvIdentity, $q, mvUser){
+angular.module('app').factory('authSvc', function($http, identitySvc, $q, userResource){
     return {
 
         /**
@@ -14,9 +14,9 @@ angular.module('app').factory('mvAuth', function($http, mvIdentity, $q, mvUser){
             $http.post('/login', {username: username, password: password })
                 .then(function(response){
                     if(response.data.success){
-                        var user = new mvUser();
+                        var user = new userResource();
                         angular.extend(user, response.data.user);
-                        mvIdentity.currentUser = user;
+                        identitySvc.currentUser = user;
                         dfd.resolve(true);
                     } else {
                         dfd.resolve(false);
@@ -31,11 +31,11 @@ angular.module('app').factory('mvAuth', function($http, mvIdentity, $q, mvUser){
          * @returns {Promise.promise|*}
          */
         createUser: function(newUserData){
-            var newUser = new mvUser(newUserData);
+            var newUser = new userResource(newUserData);
             var dfd = $q.defer();
             newUser.$save().then(
                 function(){ // On success
-                    mvIdentity.currentUser = newUser;
+                    identitySvc.currentUser = newUser;
                     dfd.resolve();
                 },
                 function(response){ // On error
@@ -53,11 +53,11 @@ angular.module('app').factory('mvAuth', function($http, mvIdentity, $q, mvUser){
         updateCurrentUser: function(data){
             var dfd = $q.defer();
             // Clone the user to prevent flicker when the update completes
-            var clone = angular.copy(mvIdentity.currentUser);
+            var clone = angular.copy(identitySvc.currentUser);
             angular.extend(clone, data);
             clone.$update().then(
                 function(){
-                    mvIdentity.currentUser = clone;
+                    identitySvc.currentUser = clone;
                     dfd.resolve();
                 },
                 function(response){
@@ -75,7 +75,7 @@ angular.module('app').factory('mvAuth', function($http, mvIdentity, $q, mvUser){
             var dfd = $q.defer();
             $http.post('/logout', {logout:true})
                 .then(function(){
-                    mvIdentity.currentUser = undefined;
+                    identitySvc.currentUser = undefined;
                     dfd.resolve();
                 });
             return dfd.promise;
@@ -88,7 +88,7 @@ angular.module('app').factory('mvAuth', function($http, mvIdentity, $q, mvUser){
          * otherwise a rejected promise is returned
          */
         authoriseCurrentUserForRoute: function(role){
-            if(mvIdentity.isAuthorised(role)){
+            if(identitySvc.isAuthorised(role)){
                 return true;
             } else {
                 return $q.reject("not authorised");
@@ -101,7 +101,7 @@ angular.module('app').factory('mvAuth', function($http, mvIdentity, $q, mvUser){
          * otherwise a rejected promise is returned
          */
         authoriseAuthenticatedUserForRoute: function(){
-            if(mvIdentity.isAuthenticated()){
+            if(identitySvc.isAuthenticated()){
                 return true;
             } else {
                 return $q.reject("not authorised");

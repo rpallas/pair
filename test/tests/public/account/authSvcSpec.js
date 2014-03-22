@@ -1,27 +1,27 @@
 /*jshint expr: true*/
 'use strict';
 
-describe('mvAuth', function(){
-    var httpBackend, mockMvIdentity, auth, mockUserSave, mockUserUpdate, dfd, User;
+describe('authSvc', function(){
+    var httpBackend, mockIdentitySvc, auth, mockUserSave, mockUserUpdate, dfd, User;
 
     beforeEach(module('app'));
 
     beforeEach(function(){
-        mockMvIdentity = sinon.stub({
+        mockIdentitySvc = sinon.stub({
             isAuthorised: function(role){},
             isAuthenticated: function(){}
         });
         module(function($provide){
-            $provide.value("mvIdentity", mockMvIdentity);
+            $provide.value("identitySvc", mockIdentitySvc);
         });
-        inject(function($httpBackend, mvAuth, mvUser, $q){
+        inject(function($httpBackend, authSvc, userResource, $q){
             httpBackend = $httpBackend;
-            auth = mvAuth;
+            auth = authSvc;
             dfd = $q.defer();
-            mockUserSave = sinon.stub(mvUser, "save");
-            mockUserUpdate = sinon.stub(mvUser, "update");
-            User = mvUser;
-            mockMvIdentity.currentUser = new User();
+            mockUserSave = sinon.stub(userResource, "save");
+            mockUserUpdate = sinon.stub(userResource, "update");
+            User = userResource;
+            mockIdentitySvc.currentUser = new User();
         });
     });
 
@@ -60,15 +60,15 @@ describe('mvAuth', function(){
             expect(promise).to.become(true);
         });
 
-        it('should set mvIdentity.currentUser if the login was successful', function(){
+        it('should set identitySvc.currentUser if the login was successful', function(){
             httpBackend.whenPOST('/login', loginData)
                 .respond(201,  { success: true, user: { firstName: 'fname', lastName: 'lname'} });
 
             auth.authenticateUser(user, pass);
             httpBackend.flush();
 
-            expect(mockMvIdentity.currentUser.firstName).to.equal('fname');
-            expect(mockMvIdentity.currentUser.lastName).to.equal('lname');
+            expect(mockIdentitySvc.currentUser.firstName).to.equal('fname');
+            expect(mockIdentitySvc.currentUser.lastName).to.equal('lname');
         });
 
     });
@@ -83,13 +83,13 @@ describe('mvAuth', function(){
             expect(mockUserSave.args[0][1]).to.deep.equal(expectedUser);
         });
 
-        it('should set mvIdentity.currentUser to the newly created user if the save was successful', function(){
+        it('should set identitySvc.currentUser to the newly created user if the save was successful', function(){
             var newUserData = { username: "user", password: "pass", firstName: "fname", lastName: "lname" };
             mockUserSave.returns(dfd.promise);
             dfd.resolve();
             var expectedUser = new User(newUserData);
             auth.createUser(newUserData).then(function(){
-                expect(mockMvIdentity.currentUser).to.deep.equal(expectedUser);
+                expect(mockIdentitySvc.currentUser).to.deep.equal(expectedUser);
             });
         });
 
@@ -126,16 +126,16 @@ describe('mvAuth', function(){
             mockUserUpdate.returns(dfd.promise);
             var angularCopySpy = sinon.spy(angular, 'copy');
             auth.updateCurrentUser(newUserData);
-            expect(angularCopySpy.calledWith(mockMvIdentity.currentUser)).to.be.true;
+            expect(angularCopySpy.calledWith(mockIdentitySvc.currentUser)).to.be.true;
         });
 
-        it('should update mvIdentity.currentUser with the new data if the update was successful', function(){
+        it('should update identitySvc.currentUser with the new data if the update was successful', function(){
             var newUserData = { username: "user", password: "pass", firstName: "fname", lastName: "lname" };
             mockUserUpdate.returns(dfd.promise);
             dfd.resolve();
             var expectedUser = new User(newUserData);
             auth.updateCurrentUser(newUserData).then(function(){
-                expect(mockMvIdentity.currentUser).to.deep.equal(expectedUser);
+                expect(mockIdentitySvc.currentUser).to.deep.equal(expectedUser);
             });
         });
 
@@ -165,11 +165,11 @@ describe('mvAuth', function(){
             httpBackend.flush();
         });
 
-        it('should set mvIdentity.currentUser to undefined', function(){
+        it('should set identitySvc.currentUser to undefined', function(){
             httpBackend.whenPOST('/logout', {logout:true}).respond(201, {});
             auth.logoutUser();
             httpBackend.flush();
-            expect(mockMvIdentity.currentUser).to.be.undefined;
+            expect(mockIdentitySvc.currentUser).to.be.undefined;
         });
 
         it('should should resolve the promise if the logout was successful', function(){
@@ -184,13 +184,13 @@ describe('mvAuth', function(){
     describe('authoriseCurrentUserForRoute', function(){
 
         it('should return true if the user is authorised for the route', function(){
-            mockMvIdentity.isAuthorised.returns(true);
+            mockIdentitySvc.isAuthorised.returns(true);
             var result = auth.authoriseCurrentUserForRoute('a role');
             expect(result).to.equal(true);
         });
 
         it('should return a rejected promise if the user is NOT authorised for the route', function(){
-            mockMvIdentity.isAuthorised.returns(false);
+            mockIdentitySvc.isAuthorised.returns(false);
             var result = auth.authoriseCurrentUserForRoute('a role');
             expect(result).to.be.rejectedWith("not authorised");
         });
@@ -200,13 +200,13 @@ describe('mvAuth', function(){
     describe('authoriseAuthenticatedUserForRoute', function(){
 
         it('should return true if the user is authenticated', function(){
-            mockMvIdentity.isAuthenticated.returns(true);
+            mockIdentitySvc.isAuthenticated.returns(true);
             var result = auth.authoriseAuthenticatedUserForRoute();
             expect(result).to.equal(true);
         });
 
         it('should return a rejected promise if the user is NOT authenticated', function(){
-            mockMvIdentity.isAuthenticated.returns(false);
+            mockIdentitySvc.isAuthenticated.returns(false);
             var result = auth.authoriseAuthenticatedUserForRoute();
             expect(result).to.be.rejectedWith("not authorised");
         });

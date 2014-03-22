@@ -1,7 +1,7 @@
 /*jshint expr: true*/
 'use strict';
 
-describe('mvNavbarLoginCtrl', function(){
+describe('navbarLoginCtrl', function(){
     var $controllerCtr, scope, location, q;
 
     beforeEach(module('app'));
@@ -12,14 +12,14 @@ describe('mvNavbarLoginCtrl', function(){
         q = $q;
     }));
 
-    it('should set the scope identity to be mvIdentity', function(){
+    it('should set the scope identity to be identitySvc', function(){
         var mockIdentity = {};
 
-        $controllerCtr('mvNavbarLoginCtrl', {
+        $controllerCtr('navbarLoginCtrl', {
             $scope: scope,
-            mvIdentity: mockIdentity,
-            mvNotifier: {},
-            mvAuth: {},
+            identitySvc: mockIdentity,
+            notifierSvc: {},
+            authSvc: {},
             $location: {}
         });
 
@@ -27,52 +27,52 @@ describe('mvNavbarLoginCtrl', function(){
     });
 
     describe('signin', function(){
-        var stubMvAuth, mockMvNotifier, dfd;
+        var stubAuthSvc, mockNotifierSvc, dfd;
 
-        beforeEach(inject(function(mvAuth){
+        beforeEach(inject(function(authSvc){
             dfd = q.defer();
-            stubMvAuth = sinon.stub(mvAuth, 'authenticateUser');
-            stubMvAuth.returns(dfd.promise);
-            mockMvNotifier = sinon.stub({ notify: function(){}, error: function(){} });
-            $controllerCtr('mvNavbarLoginCtrl', {
+            stubAuthSvc = sinon.stub(authSvc, 'authenticateUser');
+            stubAuthSvc.returns(dfd.promise);
+            mockNotifierSvc = sinon.stub({ notify: function(){}, error: function(){} });
+            $controllerCtr('navbarLoginCtrl', {
                 $scope: scope,
-                mvIdentity: {},
-                mvNotifier: mockMvNotifier,
-                mvAuth: mvAuth,
+                identitySvc: {},
+                notifierSvc: mockNotifierSvc,
+                authSvc: authSvc,
                 $location: {}
             });
         }));
 
-        it('should call mvNotifier.notify if the login was successful', function(){
+        it('should call notifierSvc.notify if the login was successful', function(){
             dfd.resolve(true); // Simulate successful login
             scope.signin('whatever', 'whatever');
             scope.$root.$digest();
-            expect(mockMvNotifier.notify.called).to.be.true;
+            expect(mockNotifierSvc.notify.called).to.be.true;
         });
 
-        it('should call mvNotifier.error if the login failed', function(){
+        it('should call notifierSvc.error if the login failed', function(){
             dfd.resolve(false); // Simulate failed login
             scope.signin('whatever', 'whatever');
             scope.$root.$digest();
-            expect(mockMvNotifier.error.called).to.be.true;
+            expect(mockNotifierSvc.error.called).to.be.true;
         });
 
     });
 
     describe('signout', function(){
-        var stubMvAuth, mockMvNotifier, dfd;
+        var stubAuthSvc, mockNotifierSvc, dfd;
 
-        beforeEach(inject(function(mvAuth, $location){
+        beforeEach(inject(function(authSvc, $location){
             dfd = q.defer();
             location = $location;
-            stubMvAuth = sinon.stub(mvAuth, 'logoutUser');
-            stubMvAuth.returns(dfd.promise);
-            mockMvNotifier = sinon.stub({ notify: function(){}, error: function(){} });
-            $controllerCtr('mvNavbarLoginCtrl', {
+            stubAuthSvc = sinon.stub(authSvc, 'logoutUser');
+            stubAuthSvc.returns(dfd.promise);
+            mockNotifierSvc = sinon.stub({ notify: function(){}, error: function(){} });
+            $controllerCtr('navbarLoginCtrl', {
                 $scope: scope,
-                mvIdentity: {},
-                mvNotifier: mockMvNotifier,
-                mvAuth: mvAuth,
+                identitySvc: {},
+                notifierSvc: mockNotifierSvc,
+                authSvc: authSvc,
                 $location: location
             });
         }));
@@ -97,7 +97,7 @@ describe('mvNavbarLoginCtrl', function(){
             dfd.resolve(true); // Simulate successful logout
             scope.signout();
             scope.$root.$digest();
-            expect(mockMvNotifier.notify.called).to.be.true;
+            expect(mockNotifierSvc.notify.called).to.be.true;
         });
 
         it('should redirect to the homepage', function(){

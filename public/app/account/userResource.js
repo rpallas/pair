@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app').factory('mvUser', function($resource){
+angular.module('app').factory('userResource', function($resource){
     var UserResource = $resource('/api/users/:_id', {_id: "@id"}, {
         update: {method:'PUT', isArray:false }
     });

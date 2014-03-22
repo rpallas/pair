@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('app').controller('mvUserListCtrl', function($scope, mvUser){
-    $scope.users = mvUser.query();
+angular.module('app').controller('userListCtrl', function($scope, userResource){
+    $scope.users = userResource.query();
 
     $scope.sortOptions = [
         { value: "lastName", label: "Sort by Last Name" },

@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('app').factory('mvIdentity', function($window, mvUser){
+angular.module('app').factory('identitySvc', function($window, userResource){
     var currentUser;
     if(!!$window.bootstrappedUserObject){
-        currentUser = new mvUser();
+        currentUser = new userResource();
         angular.extend(currentUser, $window.bootstrappedUserObject);
     }
     return {

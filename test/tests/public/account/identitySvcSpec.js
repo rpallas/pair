@@ -1,16 +1,16 @@
 /*jshint expr: true*/
 'use strict';
 
-describe('mvIdentity', function(){
+describe('identitySvc', function(){
     var window, identity, currentUser;
 
     beforeEach(module('app'));
 
-    beforeEach(inject(function($window, mvIdentity, mvUser){
+    beforeEach(inject(function($window, identitySvc, userResource){
         window = $window;
         window.bootstrappedUserObject = {firstName:'anything'};
-        identity = mvIdentity;
-        currentUser = new mvUser();
+        identity = identitySvc;
+        currentUser = new userResource();
     }));
 
     describe('isAuthenticated', function(){

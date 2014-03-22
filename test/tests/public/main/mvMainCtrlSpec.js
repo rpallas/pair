@@ -1,8 +1,8 @@
 /*jshint expr: true*/
 'use strict';
 
-describe('mvMainCtrl', function(){
-    var $controllerCtr, scope, mockUser;
+describe('mainCtrl', function(){
+    var $controllerCtr, scope;
 
     beforeEach(module('app'));
 
@@ -10,7 +10,7 @@ describe('mvMainCtrl', function(){
         $controllerCtr = $controller;
         scope = $rootScope.$new();
         var dependencies = { $scope: scope };
-        $controllerCtr('mvMainCtrl', dependencies);
+        $controllerCtr('mainCtrl', dependencies);
     }));
 
     // TODO - write real features and specs

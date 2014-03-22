@@ -36,6 +36,12 @@ describe('users controller', function (){
         resStub = sinon.stub({ status: function(){}, end: function(){}, send: function(){}});
     });
 
+    describe('createUser', function (){
+
+
+
+    });
+
     describe('updateUser', function (){
 
         it('should save the firstName', function(done){

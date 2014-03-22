@@ -1,7 +1,7 @@
 /*jshint expr: true*/
 'use strict';
 
-describe('mvUserDetailCtrl', function(){
+describe('userDetailCtrl', function(){
     var $controllerCtr, scope, mockUser;
 
     beforeEach(module('app'));
@@ -12,21 +12,21 @@ describe('mvUserDetailCtrl', function(){
         mockUser = sinon.stub({get: function() {}});
     }));
 
-    it('should set the scope user to the results of mvUser.get(id)', function(){
+    it('should set the scope user to the results of userResource.get(id)', function(){
         var mockUserData = {},
             routeParams = { id: 123 };
         mockUser.get.returns(mockUserData);
-        var dependencies = { $scope: scope, mvUser: mockUser, $routeParams: routeParams };
-        $controllerCtr('mvUserDetailCtrl', dependencies);
+        var dependencies = { $scope: scope, userResource: mockUser, $routeParams: routeParams };
+        $controllerCtr('userDetailCtrl', dependencies);
         expect(scope.user).to.equal(mockUserData);
     });
 
-    it('should call mvUser.get and pass it the id from the query params', function(){
+    it('should call userResource.get and pass it the id from the query params', function(){
         var mockUserData = {},
             routeParams = { id: 123 };
         mockUser.get.returns(mockUserData);
-        var dependencies = { $scope: scope, mvUser: mockUser, $routeParams: routeParams };
-        $controllerCtr('mvUserDetailCtrl', dependencies);
+        var dependencies = { $scope: scope, userResource: mockUser, $routeParams: routeParams };
+        $controllerCtr('userDetailCtrl', dependencies);
         expect(mockUser.get.args[0][0]).to.deep.equal({_id: 123});
     });
 

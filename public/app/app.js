@@ -12,29 +12,29 @@ angular.module('app').config(function($routeProvider, $locationProvider){
      */
     var routeRoleChecks = {
         admin: {
-            auth: function(mvAuth){
-                return mvAuth.authoriseCurrentUserForRoute('admin');
+            auth: function(authSvc){
+                return authSvc.authoriseCurrentUserForRoute('admin');
             }
         },
         user: {
-            auth: function(mvAuth){
-                return mvAuth.authoriseAuthenticatedUserForRoute();
+            auth: function(authSvc){
+                return authSvc.authoriseAuthenticatedUserForRoute();
             }
         }
     };
 
     // Register the routes
     $routeProvider
-        .when('/', { templateUrl: '/partials/main/main', controller: 'mvMainCtrl'})
-        .when('/admin/users', { templateUrl: '/partials/admin/user-list', controller: 'mvAdminUserListCtrl', resolve: routeRoleChecks.admin })
-        .when('/signup', { templateUrl: '/partials/account/signup', controller: 'mvSignupCtrl' })
-        .when('/profile', { templateUrl: '/partials/account/profile', controller: 'mvProfileCtrl', resolve: routeRoleChecks.user })
-        .when('/users', { templateUrl: '/partials/users/user-list', controller: 'mvUserListCtrl', resolve: routeRoleChecks.user })
-        .when('/users/:id', { templateUrl: '/partials/users/user-detail', controller: 'mvUserDetailCtrl', resolve: routeRoleChecks.user });
+        .when('/', { templateUrl: '/partials/main/main', controller: 'mainCtrl'})
+        .when('/admin/users', { templateUrl: '/partials/admin/user-list', controller: 'adminUserListCtrl', resolve: routeRoleChecks.admin })
+        .when('/signup', { templateUrl: '/partials/account/signup', controller: 'signupCtrl' })
+        .when('/profile', { templateUrl: '/partials/account/profile', controller: 'profileCtrl', resolve: routeRoleChecks.user })
+        .when('/users', { templateUrl: '/partials/users/user-list', controller: 'userListCtrl', resolve: routeRoleChecks.user })
+        .when('/users/:id', { templateUrl: '/partials/users/user-detail', controller: 'userDetailCtrl', resolve: routeRoleChecks.user });
 
 });
 
-angular.module('app').run(function($rootScope, $location, mvIdentity){
+angular.module('app').run(function($rootScope, $location, identitySvc){
 
     /**
      * Listen for route change errors and respond depending on the rejection type
@@ -46,6 +46,6 @@ angular.module('app').run(function($rootScope, $location, mvIdentity){
         }
     });
 
-    $rootScope.identity = mvIdentity;
+    $rootScope.identity = identitySvc;
 
 });

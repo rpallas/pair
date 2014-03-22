@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('app').controller('mvNavbarLoginCtrl', function($scope, mvIdentity, mvNotifier, mvAuth, $location) {
-    $scope.identity = mvIdentity;
+angular.module('app').controller('navbarLoginCtrl', function($scope, identitySvc, notifierSvc, authSvc, $location) {
+    $scope.identity = identitySvc;
 
     /**
      * Authenticates the given credentials and notifies the user
@@ -10,12 +10,12 @@ angular.module('app').controller('mvNavbarLoginCtrl', function($scope, mvIdentit
      * @param password The users password
      */
     $scope.signin = function(username, password) {
-        return mvAuth.authenticateUser(username, password)
+        return authSvc.authenticateUser(username, password)
             .then(function(success){
                 if(success){
-                    mvNotifier.notify('You have been successfully signed in');
+                    notifierSvc.notify('You have been successfully signed in');
                 } else {
-                    mvNotifier.error('Login failed - Incorrect username or password');
+                    notifierSvc.error('Login failed - Incorrect username or password');
                 }
             });
     };
@@ -24,10 +24,10 @@ angular.module('app').controller('mvNavbarLoginCtrl', function($scope, mvIdentit
      *
      */
     $scope.signout = function(){
-        return mvAuth.logoutUser().then(function(){
+        return authSvc.logoutUser().then(function(){
             $scope.username = "";
             $scope.password = "";
-            mvNotifier.notify('You are now signed out');
+            notifierSvc.notify('You are now signed out');
             $location.path('/');
         });
     };

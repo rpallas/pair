@@ -1,7 +1,7 @@
 /*jshint expr: true*/
 'use strict';
 
-describe('mvNotifier', function(){
+describe('notifierSvc', function(){
     var mockToastr, notifier, mockLog, log;
 
     beforeEach(module('app'));
@@ -12,17 +12,17 @@ describe('mvNotifier', function(){
             error: function(msg){}
         });
         module(function($provide){
-            $provide.value("mvToastr", mockToastr);
+            $provide.value("Toastr", mockToastr);
         });
-        inject(function(mvNotifier, $log){
-            notifier = mvNotifier;
+        inject(function(notifierSvc, $log){
+            notifier = notifierSvc;
             log = $log;
         });
     });
 
     describe('notify', function(){
 
-        it("should call mvToastr.success with the correct message", function(){
+        it("should call Toastr.success with the correct message", function(){
             notifier.notify('message');
             expect(mockToastr.success.called).to.be.true;
         });
@@ -38,7 +38,7 @@ describe('mvNotifier', function(){
 
     describe('error', function(){
 
-        it("should call mvToastr.error with the correct message", function(){
+        it("should call Toastr.error with the correct message", function(){
             notifier.error('message');
             expect(mockToastr.error.called).to.be.true;
         });

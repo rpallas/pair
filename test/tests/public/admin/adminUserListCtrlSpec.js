@@ -1,7 +1,7 @@
 /*jshint expr: true*/
 'use strict';
 
-describe('mvAdminUserListCtrl', function(){
+describe('adminUserListCtrl', function(){
     var $controllerCtr, scope, mockUser;
 
     beforeEach(module('app'));
@@ -12,11 +12,11 @@ describe('mvAdminUserListCtrl', function(){
         mockUser = sinon.stub({query: function() {}});
     }));
 
-    it('should set the scope users to the results of mvUser.query', function(){
+    it('should set the scope users to the results of userResource.query', function(){
         var mockUsersData = {};
         mockUser.query.returns(mockUsersData);
-        var dependencies = { $scope: scope, mvUser: mockUser };
-        $controllerCtr('mvAdminUserListCtrl', dependencies);
+        var dependencies = { $scope: scope, userResource: mockUser };
+        $controllerCtr('adminUserListCtrl', dependencies);
         expect(scope.users).to.equal(mockUsersData);
     });
 

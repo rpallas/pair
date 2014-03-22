@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app').controller('mvMainCtrl', function($scope) {
+angular.module('app').controller('mainCtrl', function($scope) {
     // Sample data
     $scope.activityFeedItems = [
         {text: "Something happened", published: new Date()},
