@@ -5,7 +5,7 @@ script:
   - npm config set cache /tmp/npm
   # actual script:
   - npm install grunt-cli -g
-  - npm install
+#  - npm install
   - grunt
 deploy:
   heroku:
