@@ -6,7 +6,7 @@ script:
   # actual script:
   - npm install grunt-cli -g
 #  - npm install
-  - grunt
+  - npm test
 deploy:
   heroku:
     app: paired-dev
