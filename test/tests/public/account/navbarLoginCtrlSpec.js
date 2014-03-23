@@ -29,8 +29,9 @@ describe('navbarLoginCtrl', function(){
     describe('signin', function(){
         var stubAuthSvc, mockNotifierSvc, dfd;
 
-        beforeEach(inject(function(authSvc){
+        beforeEach(inject(function(authSvc, $location){
             dfd = q.defer();
+            location = $location;
             stubAuthSvc = sinon.stub(authSvc, 'authenticateUser');
             stubAuthSvc.returns(dfd.promise);
             mockNotifierSvc = sinon.stub({ notify: function(){}, error: function(){} });
@@ -39,9 +40,17 @@ describe('navbarLoginCtrl', function(){
                 identitySvc: {},
                 notifierSvc: mockNotifierSvc,
                 authSvc: authSvc,
-                $location: {}
+                $location: location
             });
         }));
+
+        it('should redirect to the dashboard if the login was successful', function(){
+            var stubLocation = sinon.stub(location, "path");
+            dfd.resolve(true); // Simulate successful login
+            scope.signin('whatever', 'whatever');
+            scope.$root.$digest();
+            expect(stubLocation.calledWith('/dashboard')).to.be.true;
+        });
 
         it('should call notifierSvc.notify if the login was successful', function(){
             dfd.resolve(true); // Simulate successful login
