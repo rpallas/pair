@@ -7,8 +7,8 @@ block main-content
                 a.navbar-brand(href="/") Pair
             .navbar-collapse.collapse
                 ul.nav.navbar-nav
-                    li
-                        a(href="/") Home
+                    li(ng-show="identity.isAuthenticated()")
+                        a(href="/dashboard") Dashboard
                     li(ng-show="identity.isAuthenticated()")
                         a(href="/users") Browse
                 div(ng-include="'/partials/account/navbar-login'")

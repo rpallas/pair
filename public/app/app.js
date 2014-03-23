@@ -30,7 +30,8 @@ angular.module('app').config(function($routeProvider, $locationProvider){
         .when('/signup', { templateUrl: '/partials/account/signup', controller: 'signupCtrl' })
         .when('/profile', { templateUrl: '/partials/account/profile', controller: 'profileCtrl', resolve: routeRoleChecks.user })
         .when('/users', { templateUrl: '/partials/users/user-list', controller: 'userListCtrl', resolve: routeRoleChecks.user })
-        .when('/users/:id', { templateUrl: '/partials/users/user-detail', controller: 'userDetailCtrl', resolve: routeRoleChecks.user });
+        .when('/users/:id', { templateUrl: '/partials/users/user-detail', controller: 'userDetailCtrl', resolve: routeRoleChecks.user })
+        .when('/dashboard/', { templateUrl: '/partials/dashboard/dashboard', controller: 'dashboardCtrl', resolve: routeRoleChecks.user });
 
 });
 

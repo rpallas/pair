@@ -1,7 +1,7 @@
 /*jshint expr: true*/
-'use strict';
+"use strict";
 
-describe('mainCtrl', function(){
+describe('dashboardCtrl', function(){
     var $controllerCtr, scope;
 
     beforeEach(module('app'));
@@ -10,9 +10,11 @@ describe('mainCtrl', function(){
         $controllerCtr = $controller;
         scope = $rootScope.$new();
         var dependencies = { $scope: scope };
-        $controllerCtr('mainCtrl', dependencies);
+        $controllerCtr('dashboardCtrl', dependencies);
     }));
 
-    // Doesn't do anything yet - just static content
+    it('should run', function(){
+        expect(scope.user).to.be.ok;
+    });
 
 });

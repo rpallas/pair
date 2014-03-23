@@ -13,6 +13,7 @@ angular.module('app').controller('navbarLoginCtrl', function($scope, identitySvc
         return authSvc.authenticateUser(username, password)
             .then(function(success){
                 if(success){
+                    $location.path('/dashboard');
                     notifierSvc.notify('You have been successfully signed in');
                 } else {
                     notifierSvc.error('Login failed - Incorrect username or password');
