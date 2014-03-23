@@ -13,10 +13,8 @@ describe('mainCtrl', function(){
         $controllerCtr('mainCtrl', dependencies);
     }));
 
-    // TODO - write real features and specs
     it('should run', function(){
         expect(scope.user).to.be.ok;
     });
-
 
 });
