@@ -12,9 +12,9 @@ block main-content
                 a.navbar-brand(href="/") Pair
             .navbar-collapse.collapse(id="pair-navbar")
                 ul.nav.navbar-nav
-                    li(ng-show="identity.isAuthenticated()", data-toggle="collapse", data-target=".navbar-collapse")
+                    li(ng-show="identity.isAuthenticated()")
                         a(href="/dashboard") Dashboard
-                    li(ng-show="identity.isAuthenticated()", data-toggle="collapse", data-target=".navbar-collapse")
+                    li(ng-show="identity.isAuthenticated()")
                         a(href="/users") Browse
                 div(ng-include="'/partials/account/navbar-login'")
 

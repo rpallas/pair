@@ -49,4 +49,14 @@ angular.module('app').run(function($rootScope, $location, identitySvc){
 
     $rootScope.identity = identitySvc;
 
+    /**
+     * Bootstrap navbar FIX - https://github.com/twbs/bootstrap/issues/9013
+     * Prevents flicker/redraw effect when clicking navbar items while not on mobile (small screens)
+     */
+    $(document).on('click.nav','.navbar-collapse.in',function(e) {
+        if( $(e.target).is('a') || $(e.target).is('button')) {
+            $(this).collapse('hide');
+        }
+    });
+
 });
