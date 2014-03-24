@@ -4,9 +4,9 @@
             input.form-control.input-sm(placeholder="Email", ng-model="username")
         .form-group
             input.form-control.input-sm(type="password", placeholder="Password", ng-model="password")
-        button.btn.btn-primary(ng-click="signin(username, password)") Sign In
+        button.btn.btn-primary(ng-click="signin(username, password)", data-toggle="collapse", data-target=".navbar-collapse") Sign In
         | &nbsp;
-        a.btn.btn-success(href="/signup") Sign Up
+        a.btn.btn-success(href="/signup", data-toggle="collapse", data-target=".navbar-collapse") Sign Up
     ul.nav.navbar-nav.navbar-right(ng-show="identity.isAuthenticated()")
         li.dropdown
             a.dropdown-toggle(href="", data-toggle="dropdown")
