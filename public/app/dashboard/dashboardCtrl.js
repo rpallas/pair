@@ -1,6 +1,14 @@
 "use strict";
 
-angular.module('app').controller('dashboardCtrl', function($scope) {
+angular.module('app').controller('dashboardCtrl', function($scope, identitySvc) {
+
+    $scope.email = identitySvc.currentUser.username;
+    $scope.firstName = identitySvc.currentUser.firstName;
+    $scope.lastName = identitySvc.currentUser.lastName;
+    $scope.skills = identitySvc.currentUser.skills;
+    $scope.status = identitySvc.currentUser.status;
+    $scope.points = identitySvc.currentUser.points;
+
     // Sample data
     $scope.activityFeedItems = [
         {text: "Something happened", published: new Date()},
@@ -9,11 +17,5 @@ angular.module('app').controller('dashboardCtrl', function($scope) {
         {text: "More stuff", published: new Date()},
         {text: "stuff", published: new Date()}
     ];
-    $scope.user = {
-        name: "Jane Doe",
-        points: 2500,
-        status: "available to pair now",
-        languages: ["C#", "Javascript", "Php"],
-        email: "robbie@test.com"
-    };
+
 });

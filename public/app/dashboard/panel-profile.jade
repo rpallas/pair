@@ -1,17 +1,17 @@
 panel.panel-primary
-    .panel-heading.text-center Profile
+    .panel-heading Profile
     .panel-body
         .row
             .col-md-6 Name:
-            .col-md-6 {{ user.name }}
+            .col-md-6 {{ firstName + " " + lastName }}
         .row
             .col-md-6 Status:
-            .col-md-6 {{ user.status }}
+            .col-md-6 {{ status }}
         .row
             .col-md-6 Points:
             .col-md-6 {{ user.points }}
         .row
-            .col-md-6 Languages:
+            .col-md-6 Skills:
             .col-md-6
                 ul
-                    li(ng-repeat="lang in user.languages") {{ lang }}
+                    li(ng-repeat="skill in skills") {{ skill }}
