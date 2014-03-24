@@ -13,9 +13,9 @@
                 | {{ identity.currentUser.firstName + " " + identity.currentUser.lastName }}
                 b.caret
             ul.dropdown-menu
-                li(ng-show="identity.currentUser.isAdmin()")
+                li(ng-show="identity.currentUser.isAdmin()", data-toggle="collapse", data-target=".navbar-collapse")
                     a(href="/admin/users") User Admin
-                li
+                li(data-toggle="collapse", data-target=".navbar-collapse")
                     a(href="/profile") Profile
-                li
+                li(data-toggle="collapse", data-target=".navbar-collapse")
                     a(href="", ng-click="signout()") Sign Out

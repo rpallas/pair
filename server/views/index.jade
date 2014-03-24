@@ -4,12 +4,17 @@ block main-content
     .navbar.navbar-inverse.navbar-fixed-top
         .container
             .navbar-header
+                button.navbar-toggle(type="button", data-toggle="collapse", data-target=".navbar-collapse")
+                    span.sr-only Toggle navigation
+                    span.icon-bar
+                    span.icon-bar
+                    span.icon-bar
                 a.navbar-brand(href="/") Pair
-            .navbar-collapse.collapse
+            .navbar-collapse.collapse(id="pair-navbar")
                 ul.nav.navbar-nav
-                    li(ng-show="identity.isAuthenticated()")
+                    li(ng-show="identity.isAuthenticated()", data-toggle="collapse", data-target=".navbar-collapse")
                         a(href="/dashboard") Dashboard
-                    li(ng-show="identity.isAuthenticated()")
+                    li(ng-show="identity.isAuthenticated()", data-toggle="collapse", data-target=".navbar-collapse")
                         a(href="/users") Browse
                 div(ng-include="'/partials/account/navbar-login'")
 
