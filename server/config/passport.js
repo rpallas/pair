@@ -22,8 +22,8 @@ module.exports = function(config){
     ));
 
     passport.use(new GitHubStrategy({
-            clientID: '0d983fa0cfb7140a02f9',
-            clientSecret: '813514f122d7a4cbf2453676cf6495fb9f238501',
+            clientID: config.githubClientId,
+            clientSecret: config.githubClientSecret,
             callbackURL: config.host + "/auth/github/callback",
             scope: ['user:email']
         },
@@ -36,7 +36,6 @@ module.exports = function(config){
                     displayName: profile.displayName
                 };
             User.findOne({query: query}).exec(function(err, doc){
-//                debugger;
                 if(!doc){
                     User.create(createData).then(function(user){
                         return done(null, user);
