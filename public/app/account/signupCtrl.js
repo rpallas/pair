@@ -6,8 +6,7 @@ angular.module('app').controller('signupCtrl', function($scope, notifierSvc, $lo
         var newUserData = {
             username: $scope.email,
             password: $scope.password,
-            firstName: $scope.firstName,
-            lastName: $scope.lastName
+            displayName: $scope.displayName
         };
 
         authSvc.createUser(newUserData).then(

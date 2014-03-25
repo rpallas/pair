@@ -11,8 +11,7 @@ describe('dashboardCtrl', function(){
         scope = $rootScope.$new();
         mockIdentitySvc = {
             currentUser: {
-                firstName: 'fname',
-                lastName: 'lname',
+                displayName: 'displayName',
                 username: 'email',
                 skills: ['skill 1', 'skill 2'],
                 status: "ready to pair",
@@ -29,12 +28,8 @@ describe('dashboardCtrl', function(){
         expect(scope.email).to.equal(mockIdentitySvc.currentUser.username);
     });
 
-    it('should set the scope firstName to the current users first name', function(){
-        expect(scope.firstName).to.equal(mockIdentitySvc.currentUser.firstName);
-    });
-
-    it('should set the scope lastName to the current users last name', function(){
-        expect(scope.lastName).to.equal(mockIdentitySvc.currentUser.lastName);
+    it('should set the scope displayName to the current users display name', function(){
+        expect(scope.displayName).to.equal(mockIdentitySvc.currentUser.displayName);
     });
 
     it('should set the scope skills to the current users skills', function(){

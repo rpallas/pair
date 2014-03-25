@@ -8,7 +8,7 @@ describe('identitySvc', function(){
 
     beforeEach(inject(function($window, identitySvc, userResource){
         window = $window;
-        window.bootstrappedUserObject = {firstName:'anything'};
+        window.bootstrappedUserObject = {displayName:'anything'};
         identity = identitySvc;
         currentUser = new userResource();
     }));

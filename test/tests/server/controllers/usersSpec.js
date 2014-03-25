@@ -18,8 +18,7 @@ describe('users controller', function (){
                 hasRole: function(role){},
                 id: '123',
                 username: '',
-                firstName: '',
-                lastName: '',
+                displayName: '',
                 password: '',
                 skills: [],
                 roles: ["guest"]
@@ -27,8 +26,7 @@ describe('users controller', function (){
             body: {
                 _id: '123',
                 username: 'jb@test.com',
-                firstName: 'Joe',
-                lastName: 'Blogs',
+                displayName: 'Joe Blogs',
                 password: 'password',
                 skills: ['skill1', 'skill2', 'skill3']
             }
@@ -44,16 +42,10 @@ describe('users controller', function (){
 
     describe('updateUser', function (){
 
-        it('should save the firstName', function(done){
+        it('should save the displayName', function(done){
             reqStub.user.save = function(cb){ cb(); done(); };
             users.updateUser(reqStub, resStub);
-            expect(resStub.send.args[0][0].firstName).to.equal(reqStub.body.firstName);
-        });
-
-        it('should save the lastName', function(done){
-            reqStub.user.save = function(cb){ cb(); done(); };
-            users.updateUser(reqStub, resStub);
-            expect(resStub.send.args[0][0].lastName).to.equal(reqStub.body.lastName);
+            expect(resStub.send.args[0][0].displayName).to.equal(reqStub.body.displayName);
         });
 
         it('should save the username', function(done){

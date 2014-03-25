@@ -12,8 +12,7 @@ describe('signupCtrl', function(){
         $controllerCtr = $controller;
 
         scope = $rootScope.$new();
-        scope.firstName = 'fname';
-        scope.lastName = 'lname';
+        scope.displayName = 'displayName';
         scope.email = 'email';
         scope.password = 'pass';
 
@@ -42,16 +41,10 @@ describe('signupCtrl', function(){
                 .to.equal(scope.password);
         });
 
-        it('should call authSvc.createUser including the firstName', function(){
+        it('should call authSvc.createUser including the displayName', function(){
             scope.signup();
-            expect(mockAuthSvc.createUser.args[0][0].firstName)
-                .to.equal(scope.firstName);
-        });
-
-        it('should call authSvc.createUser including the lastName', function(){
-            scope.signup();
-            expect(mockAuthSvc.createUser.args[0][0].lastName)
-                .to.equal(scope.lastName);
+            expect(mockAuthSvc.createUser.args[0][0].displayName)
+                .to.equal(scope.displayName);
         });
 
         it('should call notifierSvc.notify if the update was successful', function(){

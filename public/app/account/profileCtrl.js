@@ -3,16 +3,14 @@
 angular.module('app').controller('profileCtrl', function($scope, authSvc, identitySvc, notifierSvc){
 
     $scope.email = identitySvc.currentUser.username;
-    $scope.firstName = identitySvc.currentUser.firstName;
-    $scope.lastName = identitySvc.currentUser.lastName;
+    $scope.displayName = identitySvc.currentUser.displayName;
     $scope.skills = identitySvc.currentUser.skills.join(', ');
 
     $scope.update = function(){
 
         var updatedUserData = {
             username: $scope.email,
-            firstName: $scope.firstName,
-            lastName: $scope.lastName,
+            displayName: $scope.displayName,
             skills: $scope.skills.split(', ')
         };
 

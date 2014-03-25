@@ -31,7 +31,8 @@ angular.module('app').config(function($routeProvider, $locationProvider){
         .when('/profile', { templateUrl: '/partials/account/profile', controller: 'profileCtrl', resolve: routeRoleChecks.user })
         .when('/users', { templateUrl: '/partials/users/user-list', controller: 'userListCtrl', resolve: routeRoleChecks.user })
         .when('/users/:id', { templateUrl: '/partials/users/user-detail', controller: 'userDetailCtrl', resolve: routeRoleChecks.user })
-        .when('/dashboard/', { templateUrl: '/partials/dashboard/dashboard', controller: 'dashboardCtrl', resolve: routeRoleChecks.user });
+        .when('/dashboard/', { templateUrl: '/partials/dashboard/dashboard', controller: 'dashboardCtrl', resolve: routeRoleChecks.user })
+        .when('/auth/github', { templateUrl: '/auth/github' });
 
 });
 
@@ -52,6 +53,8 @@ angular.module('app').run(function($rootScope, $location, identitySvc){
     /**
      * Bootstrap navbar FIX - https://github.com/twbs/bootstrap/issues/9013
      * Prevents flicker/redraw effect when clicking navbar items while not on mobile (small screens)
+     * I considered putting this into a directive, but hopefully it will eventually
+     * be supported natively in bootstrap
      */
     $(document).on('click.nav','.navbar-collapse.in',function(e) {
         if( $(e.target).is('a') || $(e.target).is('button')) {

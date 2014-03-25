@@ -7,10 +7,12 @@
         button.btn.btn-primary(ng-click="signin(username, password)") Sign In
         | &nbsp;
         a.btn.btn-success(href="/signup") Sign Up
+        | &nbsp;
+        a.btn.btn-default(href="/auth/github", target="_self") Github
     ul.nav.navbar-nav.navbar-right(ng-show="identity.isAuthenticated()")
         li.dropdown
             a.dropdown-toggle(href="", data-toggle="dropdown")
-                | {{ identity.currentUser.firstName + " " + identity.currentUser.lastName }}
+                | {{ identity.currentUser.displayName }}
                 b.caret
             ul.dropdown-menu
                 li(ng-show="identity.currentUser.isAdmin()")

@@ -45,8 +45,7 @@ exports.updateUser = function(req, res){
         return res.end();
     }
 
-    req.user.firstName = userUpdates.firstName;
-    req.user.lastName = userUpdates.lastName;
+    req.user.displayName = userUpdates.displayName;
     req.user.username = userUpdates.username;
     req.user.skills = userUpdates.skills;
     if(userUpdates.password && userUpdates.password.length > 0){

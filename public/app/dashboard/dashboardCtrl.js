@@ -3,8 +3,7 @@
 angular.module('app').controller('dashboardCtrl', function($scope, identitySvc) {
 
     $scope.email = identitySvc.currentUser.username;
-    $scope.firstName = identitySvc.currentUser.firstName;
-    $scope.lastName = identitySvc.currentUser.lastName;
+    $scope.displayName = identitySvc.currentUser.displayName;
     $scope.skills = identitySvc.currentUser.skills;
     $scope.status = identitySvc.currentUser.status;
     $scope.points = identitySvc.currentUser.points;

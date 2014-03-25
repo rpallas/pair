@@ -62,13 +62,12 @@ describe('authSvc', function(){
 
         it('should set identitySvc.currentUser if the login was successful', function(){
             httpBackend.whenPOST('/login', loginData)
-                .respond(201,  { success: true, user: { firstName: 'fname', lastName: 'lname'} });
+                .respond(201, { success: true, user: { displayName: "displayName" } });
 
             auth.authenticateUser(user, pass);
             httpBackend.flush();
 
-            expect(mockIdentitySvc.currentUser.firstName).to.equal('fname');
-            expect(mockIdentitySvc.currentUser.lastName).to.equal('lname');
+            expect(mockIdentitySvc.currentUser.displayName).to.equal('displayName');
         });
 
     });
@@ -76,7 +75,7 @@ describe('authSvc', function(){
     describe('createUser', function(){
 
         it('should create a new user with the correct data', function(){
-            var newUserData = { username: "user", password: "pass", firstName: "fname", lastName: "lname" };
+            var newUserData = { username: "user", password: "pass", displayName: "displayName" };
             mockUserSave.returns(dfd.promise);
             var expectedUser = new User(newUserData);
             auth.createUser(newUserData);
@@ -84,7 +83,7 @@ describe('authSvc', function(){
         });
 
         it('should set identitySvc.currentUser to the newly created user if the save was successful', function(){
-            var newUserData = { username: "user", password: "pass", firstName: "fname", lastName: "lname" };
+            var newUserData = { username: "user", password: "pass", displayName: "displayName" };
             mockUserSave.returns(dfd.promise);
             dfd.resolve();
             var expectedUser = new User(newUserData);
@@ -94,7 +93,7 @@ describe('authSvc', function(){
         });
 
         it('should resolve the promise if the save was successful', function(){
-            var newUserData = { username: "user", password: "pass", firstName: "fname", lastName: "lname" };
+            var newUserData = { username: "user", password: "pass", displayName: "displayName" };
             mockUserSave.returns(dfd.promise);
             dfd.resolve();
             var promise = auth.createUser(newUserData);
@@ -102,7 +101,7 @@ describe('authSvc', function(){
         });
 
         it('should reject the promise with a reason if the save was NOT successful', function(){
-            var newUserData = { username: "user", password: "pass", firstName: "fname", lastName: "lname" };
+            var newUserData = { username: "user", password: "pass", displayName: "displayName" };
             mockUserSave.returns(dfd.promise);
             dfd.reject({data:{reason: 'reason'}});
             var promise = auth.createUser(newUserData);
@@ -114,7 +113,7 @@ describe('authSvc', function(){
     describe('updateCurrentUser', function(){
 
         it('should update the user with the correct data', function(){
-            var newUserData = { username: "user", password: "pass", firstName: "fname", lastName: "lname" };
+            var newUserData = { username: "user", password: "pass", displayName: "displayName" };
             mockUserUpdate.returns(dfd.promise);
             var expectedUser = new User(newUserData);
             auth.updateCurrentUser(newUserData);
@@ -122,7 +121,7 @@ describe('authSvc', function(){
         });
 
         it('should clone the current user to prevent flicker', function(){
-            var newUserData = { username: "user", password: "pass", firstName: "fname", lastName: "lname" };
+            var newUserData = { username: "user", password: "pass", displayName: "displayName" };
             mockUserUpdate.returns(dfd.promise);
             var angularCopySpy = sinon.spy(angular, 'copy');
             auth.updateCurrentUser(newUserData);
@@ -130,7 +129,7 @@ describe('authSvc', function(){
         });
 
         it('should update identitySvc.currentUser with the new data if the update was successful', function(){
-            var newUserData = { username: "user", password: "pass", firstName: "fname", lastName: "lname" };
+            var newUserData = { username: "user", password: "pass", displayName: "displayName" };
             mockUserUpdate.returns(dfd.promise);
             dfd.resolve();
             var expectedUser = new User(newUserData);
@@ -140,7 +139,7 @@ describe('authSvc', function(){
         });
 
         it('should resolve the promise if the update was successful', function(){
-            var newUserData = { username: "user", password: "pass", firstName: "fname", lastName: "lname" };
+            var newUserData = { username: "user", password: "pass", displayName: "displayName" };
             mockUserUpdate.returns(dfd.promise);
             dfd.resolve();
             var promise = auth.updateCurrentUser(newUserData);
@@ -148,7 +147,7 @@ describe('authSvc', function(){
         });
 
         it('should reject the promise with a reason if the update was NOT successful', function(){
-            var newUserData = { username: "user", password: "pass", firstName: "fname", lastName: "lname" };
+            var newUserData = { username: "user", password: "pass", displayName: "displayName" };
             mockUserUpdate.returns(dfd.promise);
             dfd.reject({data:{reason: 'reason'}});
             var promise = auth.updateCurrentUser(newUserData);

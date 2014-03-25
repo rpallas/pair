@@ -24,6 +24,30 @@ exports.authenticate = function(req, res, next){
     auth(req, res, next);
 };
 
+exports.authenticateGithub = function(req, res, next){
+    var auth = passport.authenticate('github');
+    auth(req, res, next);
+};
+
+exports.authenticateGithubCallback = function(req, res, next){
+    var auth = passport.authenticate('github', function(err, user){
+
+//        debugger;
+
+        if(err) { return next(err); }
+        if(!user){
+            res.send({ success:false });
+        } else {
+            req.logIn(user, function(){
+                if(err) { return next(err); }
+                //res.send({ success: true, user: user });
+                res.redirect('/dashboard');
+            });
+        }
+    });
+    auth(req, res, next);
+};
+
 exports.requiresApiLogin = function(req, res, next){
     if(!req.isAuthenticated()){
         res.status(403);

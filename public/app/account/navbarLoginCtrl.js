@@ -11,18 +11,11 @@ angular.module('app').controller('navbarLoginCtrl', function($scope, identitySvc
      */
     $scope.signin = function(username, password) {
         return authSvc.authenticateUser(username, password)
-            .then(function(success){
-                if(success){
-                    $location.path('/dashboard');
-                    notifierSvc.notify('You have been successfully signed in');
-                } else {
-                    notifierSvc.error('Login failed - Incorrect username or password');
-                }
-            });
+            .then(authCallback);
     };
 
     /**
-     *
+     * Sign the user out
      */
     $scope.signout = function(){
         return authSvc.logoutUser().then(function(){
@@ -32,5 +25,18 @@ angular.module('app').controller('navbarLoginCtrl', function($scope, identitySvc
             $location.path('/');
         });
     };
+
+    /**
+     * Callback function for authentication
+     * @param success bool was the user login successful
+     */
+    function authCallback(success){
+        if(success){
+            $location.path('/dashboard');
+            notifierSvc.notify('You have been successfully signed in');
+        } else {
+            notifierSvc.error('Login failed - Incorrect username or password');
+        }
+    }
 
 });
