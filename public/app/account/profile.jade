@@ -4,6 +4,8 @@
             fieldset
                 legend User Profile
                 .form-group
+                    img.profile-img.img-responsive.img-thumbnail(ng-src="{{avatarUrl}}", alt="Profile picture")
+                .form-group
                     label.col-md-2.control-label(for="email") Email
                     .col-md-10
                         input.form-control(name="email", type="email", placeholder="Email", ng-model="email", required)

@@ -5,6 +5,7 @@ angular.module('app').controller('profileCtrl', function($scope, authSvc, identi
     $scope.email = identitySvc.currentUser.username;
     $scope.displayName = identitySvc.currentUser.displayName;
     $scope.skills = identitySvc.currentUser.skills.join(', ');
+    $scope.avatarUrl = identitySvc.currentUser.avatarUrl;
 
     $scope.update = function(){
 

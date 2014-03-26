@@ -2,6 +2,9 @@ panel.panel-primary
     .panel-heading Profile
     .panel-body
         .row
+            .col-md-12
+                img.profile-img.img-responsive.img-thumbnail(ng-src="{{ avatarUrl }}", alt="Profile picture")
+        .row
             .col-md-6 Name:
             .col-md-6 {{ displayName }}
         .row
@@ -9,7 +12,7 @@ panel.panel-primary
             .col-md-6 {{ status }}
         .row
             .col-md-6 Points:
-            .col-md-6 {{ user.points }}
+            .col-md-6 {{ points }}
         .row
             .col-md-6 Skills:
             .col-md-6

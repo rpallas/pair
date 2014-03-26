@@ -16,7 +16,8 @@ var userSchema = mongoose.Schema({
     roles: [String],
     status: String,
     points: Number,
-    skills: [String]
+    skills: [String],
+    avatarUrl: String
 });
 
 userSchema.methods = {

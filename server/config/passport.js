@@ -33,12 +33,14 @@ module.exports = function(config){
                 createData = {
                     githubId: profile.id,
                     username: email,
-                    displayName: profile.displayName
+                    displayName: profile.displayName,
+                    avatarUrl: profile._json.avatar_url
                 };
+            debugger;
             User.findOne({query: query}).exec(function(err, doc){
                 if(!doc){
                     User.create(createData).then(function(user){
-                        return done(null, user);
+                        return done(err, user);
                     });
                 } else {
                     return done(err, doc);
