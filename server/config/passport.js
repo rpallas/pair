@@ -36,7 +36,6 @@ module.exports = function(config){
                     displayName: profile.displayName,
                     avatarUrl: profile._json.avatar_url
                 };
-            debugger;
             User.findOne({query: query}).exec(function(err, doc){
                 if(!doc){
                     User.create(createData).then(function(user){
