@@ -4,7 +4,9 @@
             fieldset
                 legend User Profile
                 .form-group
-                    img.profile-img.img-responsive.img-thumbnail(ng-src="{{avatarUrl}}", alt="Profile picture")
+                    label.col-md-2.control-label Avatar
+                    .col-md-10
+                        img.profile-img.img-responsive.img-thumbnail(ng-src="{{avatarUrl}}", alt="Profile picture")
                 .form-group
                     label.col-md-2.control-label(for="email") Email
                     .col-md-10
@@ -20,7 +22,7 @@
                 .form-group
                     label.col-md-2.control-label(for="password") Password
                     .col-md-10
-                        input.form-control(name="password", type="password", placeholder="Password", ng-model="password")
+                        input.form-control(name="password", type="password", placeholder="New password", ng-model="password")
                 .form-group
                     .col-md-10.col-md-offset-2
                         .pull-right

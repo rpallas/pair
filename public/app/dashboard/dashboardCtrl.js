@@ -7,7 +7,6 @@ angular.module('app').controller('dashboardCtrl', function($scope, identitySvc) 
     $scope.skills = identitySvc.currentUser.skills;
     $scope.status = identitySvc.currentUser.status;
     $scope.points = identitySvc.currentUser.points;
-    $scope.avatarUrl = identitySvc.currentUser.avatarUrl;
 
     // Sample data
     $scope.activityFeedItems = [
