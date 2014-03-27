@@ -2,6 +2,18 @@
 
 angular.module('app').controller('signupCtrl', function($scope, notifierSvc, $location, authSvc){
 
+    /**
+     * Updates the users email address
+     */
+    $scope.submitEmail = function(){
+        var data = { username: $scope.email };
+        authSvc.updateCurrentUser(data);
+        $location.path('/dashboard');
+    };
+
+    /**
+     * Creates a new user from the form values
+     */
     $scope.signup = function(){
         var newUserData = {
             username: $scope.email,

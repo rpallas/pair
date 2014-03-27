@@ -7,9 +7,6 @@ var auth = require('./auth'),
 
 module.exports = function(app, config){
 
-    app.get('/auth/github', auth.authenticateGithub);
-    app.get('/auth/github/callback', auth.authenticateGithubCallback);
-
     app.get('/api/users', auth.requiresApiLogin, users.getUsers);
     app.get('/api/users/:id', auth.requiresApiLogin, users.getUserById);
     app.post('/api/users', users.createUser);
@@ -18,6 +15,9 @@ module.exports = function(app, config){
     app.get('/partials/*', function(req, res){
         res.render('../../public/app/' + req.params);
     });
+
+    app.get('/auth/github', auth.authenticateGithub);
+    app.get('/auth/github/callback', auth.authenticateGithubCallback);
 
     app.post('/login', auth.authenticate);
 

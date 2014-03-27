@@ -7,17 +7,20 @@ var userSchema = mongoose.Schema({
     displayName: {type: String, required:'{PATH} is required!'},
     username: {
         type: String,
-        required:'{PATH} is required!',
         unique: true
     },
-    githubId: Number,
+    githubId: {
+        type: Number,
+        unique: true
+    },
     salt: {type: String, select: false},        // salt and hashed_pwd are excluded for added security
     hashed_pwd: {type: String, select: false},
     roles: [String],
     status: String,
     points: Number,
     skills: [String],
-    avatarUrl: String
+    avatarUrl: String,
+    token: String
 });
 
 userSchema.methods = {

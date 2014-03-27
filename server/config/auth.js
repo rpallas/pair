@@ -31,15 +31,21 @@ exports.authenticateGithub = function(req, res, next){
 
 exports.authenticateGithubCallback = function(req, res, next){
     var auth = passport.authenticate('github', function(err, user){
-
-//        debugger;
-
-        if(err) { return next(err); }
+        if(err) {
+            res.send({ success:false, error: JSON.stringify(err) });
+            return next(err);
+        }
         if(!user){
             res.send({ success:false });
         } else {
             req.logIn(user, function(){
-                if(err) { return next(err); }
+                // If it starts with '@' then its a placeholder we inserted because no email was present via oauth
+                if(user.username.indexOf('@') === 0){
+                    // Redirect to request email - the email is not present. This can happen if
+                    // the Github user doesn't have a public email address.
+                    res.redirect('/request-email');
+                    return next();
+                }
                 //res.send({ success: true, user: user });
                 res.redirect('/dashboard');
             });

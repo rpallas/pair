@@ -6,6 +6,7 @@ var mongoose = require('mongoose'),
     GitHubStrategy = require('passport-github').Strategy,
     User = mongoose.model('User');
 
+
 module.exports = function(config){
 
     passport.use(new LocalStrategy(
@@ -28,21 +29,33 @@ module.exports = function(config){
             scope: ['user:email']
         },
         function(accessToken, refreshToken, profile, done) {
-            var email = profile.emails.length > 0 ? profile.emails[0].value : "",
-                query = { githubId: profile.id },
-                createData = {
-                    githubId: profile.id,
-                    username: email,
-                    displayName: profile.displayName,
-                    avatarUrl: profile._json.avatar_url
-                };
-            User.findOne({query: query}).exec(function(err, doc){
+            User.findOne({githubId: profile.id}).exec(function(err, doc){
                 if(!doc){
-                    User.create(createData).then(function(user){
-                        return done(err, user);
+                    var newUser = {
+                        githubId: profile.id,
+                        // username is unique, so if not known, create a unique placeholder starting with @ (so its invalid)
+                        username: profile.emails.length > 0 && profile.emails[0].value !== "" ? profile.emails[0].value : "@" + profile.id,
+                        displayName: profile.displayName,
+                        avatarUrl: profile._json.avatar_url,
+                        token: accessToken
+                    };
+                    User.create(newUser).then(function(user){
+                        if (profile.emails.length < 1 || profile.emails[0].value === ""){
+                            // Return an error - the email is not present. This can happen if
+                            // the Github user doesn't have a public email address.
+                            return done(null, user);
+                        }
+                        return done(null, user);
                     });
                 } else {
-                    return done(err, doc);
+                    doc.token = accessToken;
+                    doc.save(function(err, user, num){
+                        if (err){ console.log('error saving access token'); }
+                    });
+                    // Ensure token is stored in the db before it gets requested
+                    process.nextTick(function() {
+                        return done(err,doc);
+                    });
                 }
             });
         }
