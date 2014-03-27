@@ -35,7 +35,7 @@ module.exports = function(config){
                         githubId: profile.id,
                         // username is unique, so if not known, create a unique placeholder starting with @ (so its invalid)
                         username: profile.emails.length > 0 && profile.emails[0].value !== "" ? profile.emails[0].value : "@" + profile.id,
-                        displayName: profile.displayName,
+                        displayName: profile.displayName.length > 0 ? profile.displayName : profile.username,
                         avatarUrl: profile._json.avatar_url,
                         token: accessToken
                     };
