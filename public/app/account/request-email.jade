@@ -1,12 +1,12 @@
 .container
-    form.form-inline(role="form" name="emailRequestForm")
-        .form-group(has-success, has-feedback)
-            label.control-label(for="email") Email
-            input.form-control(ng-model="email" type="email" name="email" placeholder="Please enter your email address")
-            span.glyphicon.glyphicon-ok.form-control-feedback
-        .form-group
-            .col-md-10.col-md-offset-2
-                .pull-right
-                    button.btn.btn-primary(ng-click="submitEmail()" ng-disabled="emailRequestForm.$invalid") Submit
+    .row
+        .col-lg-4.col-md-offset-4
+            form.form-horizontal(role="form" name="emailRequestForm")
+                .form-group(has-success, has-feedback)
+                    label.control-label(for="email") Email
+                    input.form-control(ng-model="email" type="email" name="email" placeholder="Please enter your email address")
                     | &nbsp;
-                    a.btn.btn-default(href="/") Cancel
+                    p We were not able to retrieve an email address. Please provide one here.
+                .form-group
+                    .pull-right
+                        button.btn.btn-primary(ng-click="submitEmail()" ng-disabled="emailRequestForm.$invalid") Submit
