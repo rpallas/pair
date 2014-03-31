@@ -10,7 +10,7 @@ angular.module('app').factory('userResource', function($resource){
     };
 
     UserResource.prototype.getProfileImage = function() {
-        return this.avatarUrl || "https://s3-eu-west-1.amazonaws.com/pair-app/blank-profile.jpg";
+        return this.avatarUrl || "https://s3-eu-west-1.amazonaws.com/pair-app/blank-profile.png";
     };
 
     return UserResource;
