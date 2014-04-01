@@ -45,6 +45,7 @@
     "grunt-karma": "~0.8.2",
     "grunt-mocha-test": "~0.10.0",
     "chai": "~1.9.0",
-    "sinon": "~1.9.0"
+    "sinon": "~1.9.0",
+    "sandboxed-module": "~0.3.0"
   }
 }
