@@ -80,7 +80,7 @@ describe('auth', function () {
         });
 
         // TODO
-//        it('sçhould send a success response if the login details are correct', function(done){
+//        it('should send a success response if the login details are correct', function(done){
 //            fnDone = done;
 //            var user = {username:"anything"};
 //            sinon.stub(passport, 'authenticate', function(type, callback){

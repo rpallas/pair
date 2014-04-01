@@ -6,7 +6,9 @@ var serverPath = '../../../../server/',
     users = require(serverPath + 'controllers/users'),
     expect = require('chai').expect,
     sinon = require('sinon'),
-    User = require('mongoose').model('User');
+    mongoose = require('mongoose'),
+    User = mongoose.model('User'),
+    sandbox = require('sandboxed-module');
 
 describe('users controller', function (){
     var reqStub, resStub;
@@ -36,7 +38,30 @@ describe('users controller', function (){
 
     describe('createUser', function (){
 
+        beforeEach(function(){
+            var self = this;
+            self.User = { create: sinon.stub() };
+            self.encrypt = { createSalt: sinon.spy(), hashPwd: sinon.spy() };
 
+//            // Make sure the schema exists
+//            mongoose.model('User', new mongoose.Schema());
+//
+//            // get the sandboxedModule to run our file in a VM with our mocks
+//            return this.users = sandbox.require(serverPath + 'controllers/users', {
+//                requires: {
+//                    "User":self.User, // inject our fake User model
+//                    "encrypt":self.encrypt
+//                }
+//            });
+
+        });
+
+        it('should create a new user with the data from the request', function(done){
+            var nextSpy = sinon.spy();
+            done();
+            //this.users.createUser(reqStub, resStub, nextSpy);
+            //expect(self.User.create.args[0][0].value).to.deep.equal(reqStub.user);
+        });
 
     });
 
