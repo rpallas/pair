@@ -13,10 +13,10 @@ describe('signupCtrl', function(){
 
         scope = $rootScope.$new();
         scope.displayName = 'displayName';
-        scope.email = 'email';
+        scope.email = 'email@test.com';
         scope.password = 'pass';
 
-        mockAuthSvc = sinon.stub({ createUser: function(){} });
+        mockAuthSvc = sinon.stub({ createUser: function(){}, updateCurrentUser: function(){} });
         mockAuthSvc.createUser.returns(dfd.promise);
         mockNotifierSvc = sinon.stub({ notify: function(){}, error: function(){} });
         $controllerCtr('signupCtrl', {
@@ -59,6 +59,22 @@ describe('signupCtrl', function(){
             scope.signup();
             scope.$root.$digest();
             expect(mockNotifierSvc.error.calledWith("reason")).to.be.true;
+        });
+
+    });
+
+    describe('submitEmail', function(){
+
+        it('should update the current user with the scope email', function(){
+            scope.submitEmail();
+            expect(mockAuthSvc.updateCurrentUser.args[0][0].username)
+                .to.equal(scope.email);
+        });
+
+        it('should update the current user with the scope email', function(){
+            var stubLocation = sinon.stub(location, "path");
+            scope.submitEmail();
+            expect(stubLocation.args[0][0]).to.equal('/dashboard');
         });
 
     });
