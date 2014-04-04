@@ -14,7 +14,8 @@ describe('profileCtrl', function(){
             currentUser: {
                 displayName: 'displayName',
                 username: 'email',
-                skills: ['skill 1', 'skill 2']
+                skills: ['skill 1', 'skill 2'],
+                getProfileImage : function(){}
             }
         };
         mockAuthSvc = sinon.stub({ updateCurrentUser: function(){} });
@@ -42,18 +43,17 @@ describe('profileCtrl', function(){
 
     describe('update', function(){
 
-        it('should call mockAuthSvc.updateCurrentUser passing correct data', function(){
+        it('should update the current user', function(){
             scope.update();
-            expect(mockAuthSvc.updateCurrentUser.args[0][0])
-                .to.deep.equal(mockIdentitySvc.currentUser);
+            expect(mockAuthSvc.updateCurrentUser.called).to.be.true;
         });
 
         it('should include the password if the scope has one', function(){
             scope.password = 'pass';
             mockIdentitySvc.currentUser.password = 'pass';
             scope.update();
-            expect(mockAuthSvc.updateCurrentUser.args[0][0])
-                .to.deep.equal(mockIdentitySvc.currentUser);
+            expect(mockAuthSvc.updateCurrentUser.args[0][0].password)
+                .to.equal(mockIdentitySvc.currentUser.password);
         });
 
         it('should call notifierSvc.notify if the update was successful', function(){

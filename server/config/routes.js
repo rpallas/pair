@@ -16,7 +16,7 @@ module.exports = function(app, config){
 
     app.get('/api/requests', auth.requiresApiLogin, requests.getRequests);
     app.get('/api/requests/:toUser', auth.requiresApiLogin, requests.getRequestsByUserId);
-    app.post('/api/requests', requests.createRequest);
+    app.post('/api/requests/:id', auth.requiresApiLogin, requests.createRequest);
 //    app.put('/api/requests', requests.updateRequest);
 
     app.get('/partials/*', function(req, res){

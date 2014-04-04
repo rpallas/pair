@@ -1,24 +1,26 @@
 'use strict';
 
-angular.module('app').controller('userDetailCtrl', function($scope, userResource, requestResource, $routeParams, $q, identitySvc){
+angular.module('app').controller('userDetailCtrl', function($scope, userResource, requestResource, $routeParams, $q, identitySvc, notifierSvc){
     $scope.user = userResource.get({_id: $routeParams.id});
 
     $scope.requestPair = function(){
-        var newRequestData = {
+        var dfd = $q.defer(),
+            request = new requestResource({
                 fromUser: identitySvc.currentUser._id,
                 toUser: $routeParams.id
-            },
-            dfd = $q.defer(),
-            request = new requestResource(newRequestData);
+            });
+
         request.$save().then(
             function(){ // On success
-                console.log("Request sent");
+                notifierSvc.notify("Pair request sent");
                 dfd.resolve();
             },
             function(response){ // On error
+                notifierSvc.error("Error sending pair request");
                 dfd.reject(response.data.reason);
             }
         );
+
         return dfd.promise;
     };
 });
