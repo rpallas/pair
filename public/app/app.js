@@ -33,7 +33,7 @@ angular.module('app').config(function($routeProvider, $locationProvider){
         .when('/users/:id', { templateUrl: '/partials/users/user-detail', controller: 'userDetailCtrl', resolve: routeRoleChecks.user })
         .when('/dashboard', { templateUrl: '/partials/dashboard/dashboard', controller: 'dashboardCtrl', resolve: routeRoleChecks.user })
         .when('/request-email', { templateUrl: '/partials/account/request-email', controller: 'signupCtrl', resolve: routeRoleChecks.user })
-        .when('/requests', { templateUrl: '/partials/requests/requests', controller: 'requestsCtrl', resolve: routeRoleChecks.user });
+        .when('/requests', { templateUrl: '/partials/requests/request-list', controller: 'requestListCtrl', resolve: routeRoleChecks.user });
 
 });
 

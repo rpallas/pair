@@ -3,6 +3,13 @@
 var mongoose = require('mongoose'),
     encrypt = require('../utilities/encryption');
 
+var requestSchema = mongoose.Schema({
+    fromUser: {type: mongoose.Schema.ObjectId, required:'{PATH} is required!'},
+    state: {type: String, enum: ['Sent', 'Accepted', 'Rejected', 'Rescheduled']},
+    sentDateTime: Date,
+    responseDateTime: Date
+});
+
 var userSchema = mongoose.Schema({
     displayName: {type: String, required:'{PATH} is required!'},
     username: {
@@ -20,7 +27,8 @@ var userSchema = mongoose.Schema({
     points: Number,
     skills: [String],
     avatarUrl: String,
-    token: String
+    token: String,
+    requests: [requestSchema]
 });
 
 userSchema.methods = {

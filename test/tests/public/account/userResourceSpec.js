@@ -35,4 +35,5 @@ describe('userResource', function(){
         }));
 
     });
+
 });

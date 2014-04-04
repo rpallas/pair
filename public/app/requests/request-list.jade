@@ -1,0 +1,13 @@
+.container
+    table.table.table-hover.table-striped.table-condensed
+        thead
+            tr
+                th From
+                th Sent Date
+                th State
+            tbody
+                tr(ng-repeat="request in requests")
+                    td
+                        a(href="/users/{{ request.fromUser }}") {{ request.fromUser }}
+                    td {{ request.sentDateTime | date:'dd/MM/yyyy hh:mm' }}
+                    td {{ request.state }}

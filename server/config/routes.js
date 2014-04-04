@@ -2,8 +2,10 @@
 
 var auth = require('./auth'),
     users = require('../controllers/users'),
+    requests = require('../controllers/requests'),
     mongoose = require('mongoose'),
-    User = mongoose.model('User');
+    User = mongoose.model('User'),
+    Request = mongoose.model('Request');
 
 module.exports = function(app, config){
 
@@ -11,6 +13,11 @@ module.exports = function(app, config){
     app.get('/api/users/:id', auth.requiresApiLogin, users.getUserById);
     app.post('/api/users', users.createUser);
     app.put('/api/users', users.updateUser);
+
+    app.get('/api/requests', auth.requiresApiLogin, requests.getRequests);
+    app.get('/api/requests/:id', auth.requiresApiLogin, requests.getRequestsByUserId);
+    app.post('/api/requests', requests.createRequest);
+//    app.put('/api/requests', requests.updateRequest);
 
     app.get('/partials/*', function(req, res){
         res.render('../../public/app/' + req.params);

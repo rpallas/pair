@@ -35,3 +35,6 @@ footer p {
   float: left;
   margin-top: -3px;
 }
+a span.glyphicon {
+  padding: 3px;
+}
