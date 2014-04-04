@@ -9,7 +9,7 @@ exports.getRequests = function(req, res){
 };
 
 exports.getRequestsByUserId = function(req, res){
-    Request.find({_id: req.params.id}).exec(function(err, requests){
+    Request.find({toUser: req.params.toUser}).exec(function(err, requests){
         res.send(requests);
     });
 };

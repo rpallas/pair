@@ -15,7 +15,7 @@ module.exports = function(app, config){
     app.put('/api/users', users.updateUser);
 
     app.get('/api/requests', auth.requiresApiLogin, requests.getRequests);
-    app.get('/api/requests/:id', auth.requiresApiLogin, requests.getRequestsByUserId);
+    app.get('/api/requests/:toUser', auth.requiresApiLogin, requests.getRequestsByUserId);
     app.post('/api/requests', requests.createRequest);
 //    app.put('/api/requests', requests.updateRequest);
 
