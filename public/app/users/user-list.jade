@@ -2,7 +2,7 @@
     .pull-right
         form.form-inline
             .form-group
-                input.form-control(ng-model="searchText", placeHolder="filter by")
+                input.form-control(ng-model="searchText", placeHolder="filter by" autocomplete="off")
             .form-group.margin-left-med
                 select.form-control(ng-model="sortOrder", ng-options="item.value as item.label for item in sortOptions")
     table.table.table-hover.table-striped.table-condensed
@@ -15,7 +15,9 @@
             tbody
                 tr(ng-repeat="user in users | filter:searchText | orderBy:sortOrder")
                     td
-                        a(href="/users/{{ user._id }}") {{ user.displayName }}
+                        a(href="/users/{{ user._id }}")
+                            img.profile-img-icon.img-responsive.img(ng-src="{{ user.getProfileImage() }}", alt="Profile picture icon")
+                            | &nbsp; {{ user.displayName }}
                     td {{ user.status }}
                     td {{ user.points }}
                     td {{ user.skills.join(', ') }}
