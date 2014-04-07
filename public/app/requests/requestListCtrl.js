@@ -5,13 +5,19 @@ angular.module('app').controller('requestListCtrl', function($scope, requestReso
 
     $scope.receivedRequests = function(){
         return $scope.requests.filter(function(request){
-            return request.toUser === identitySvc.currentUser._id;
+            if(identitySvc.currentUser === undefined) {
+                return false;
+            }
+            return request.toUser.id === identitySvc.currentUser._id;
         })
     };
 
     $scope.sentRequests = function(){
         return $scope.requests.filter(function(request){
-            return request.fromUser === identitySvc.currentUser._id;
+            if(identitySvc.currentUser === undefined) {
+                return false;
+            }
+            return request.fromUser.id === identitySvc.currentUser._id;
         })
     };
 

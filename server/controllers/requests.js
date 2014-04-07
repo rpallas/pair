@@ -9,7 +9,12 @@ exports.getRequests = function(req, res){
 };
 
 exports.getAllRequestsByUserId = function(req, res){
-    Request.find({ $or: [{toUser: req.params.userId}, {fromUser: req.params.userId}]}).exec(function(err, requests){
+    Request.find({
+        $or: [
+            {"toUser.id": req.params.userId},
+            {"fromUser.id": req.params.userId}
+        ]
+    }).exec(function(err, requests){
         res.send(requests);
     });
 };

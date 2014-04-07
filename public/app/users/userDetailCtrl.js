@@ -1,13 +1,21 @@
 'use strict';
 
-angular.module('app').controller('userDetailCtrl', function($scope, userResource, requestResource, $routeParams, $q, identitySvc, notifierSvc){
+angular.module('app').controller('userDetailCtrl', function($scope, userResource, requestResource, $routeParams, $q, identitySvc, notifierSvc, config){
     $scope.user = userResource.get({_id: $routeParams.id});
 
     $scope.requestPair = function(){
         var dfd = $q.defer(),
             request = new requestResource({
-                fromUser: identitySvc.currentUser._id,
-                toUser: $routeParams.id
+                fromUser: {
+                    id: identitySvc.currentUser._id,
+                    displayName: identitySvc.currentUser.displayName,
+                    avatarUrl: identitySvc.currentUser.avatarUrl || config.blankProfileImage
+                },
+                toUser: {
+                    id: $scope.user._id,
+                    displayName: $scope.user.displayName,
+                    avatarUrl: $scope.user.avatarUrl || config.blankProfileImage
+                }
             });
 
         request.$save().then(

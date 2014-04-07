@@ -11,8 +11,12 @@
             tbody
                 tr(ng-repeat="request in receivedRequests()")
                     td
-                        a(href="/users/{{ request.fromUser }}") {{ request.fromUser }}
-                    td {{ request.sentDateTime | date:'dd/MM/yyyy HH:mm' }}
+                        a(href="/users/{{ request.fromUser.id }}")
+                            img.profile-img-icon.img-responsive.img(ng-src="{{ request.fromUser.avatarUrl }}", alt="Profile picture icon")
+                        | &nbsp;
+                        a(href="/users/{{ request.fromUser.id }}")
+                            | {{ request.fromUser.displayName }}
+                    td {{ request.sentDateTime | date:'d MMM, yyyy HH:mm' }}
                     td {{ request.state }}
     h4 Sent:
     table.table.table-hover.table-striped.table-condensed
@@ -24,6 +28,10 @@
             tbody
                 tr(ng-repeat="request in sentRequests()")
                     td
-                        a(href="/users/{{ request.toUser }}") {{ request.toUser }}
-                    td {{ request.sentDateTime | date:'dd/MM/yyyy HH:mm' }}
+                        a(href="/users/{{ request.toUser.id }}")
+                            img.profile-img-icon.img-responsive.img(ng-src="{{ request.toUser.avatarUrl }}", alt="Profile picture icon")
+                        | &nbsp;
+                        a(href="/users/{{ request.toUser.id }}")
+                            | {{ request.toUser.displayName }}
+                    td {{ request.sentDateTime | date:'d MMM, yyyy HH:mm' }}
                     td {{ request.state }}

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app').factory('userResource', function($resource){
+angular.module('app').factory('userResource', function($resource, config){
     var UserResource = $resource('/api/users/:_id', {_id: "@id"}, {
         update: {method:'PUT', isArray:false }
     });
@@ -10,7 +10,7 @@ angular.module('app').factory('userResource', function($resource){
     };
 
     UserResource.prototype.getProfileImage = function() {
-        return this.avatarUrl || "https://s3-eu-west-1.amazonaws.com/pair-app/blank-profile.png";
+        return this.avatarUrl || config.blankProfileImage;
     };
 
     return UserResource;
