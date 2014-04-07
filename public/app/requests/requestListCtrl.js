@@ -9,7 +9,7 @@ angular.module('app').controller('requestListCtrl', function($scope, requestReso
                 return false;
             }
             return request.toUser.id === identitySvc.currentUser._id;
-        })
+        });
     };
 
     $scope.sentRequests = function(){
@@ -18,7 +18,7 @@ angular.module('app').controller('requestListCtrl', function($scope, requestReso
                 return false;
             }
             return request.fromUser.id === identitySvc.currentUser._id;
-        })
+        });
     };
 
 });
