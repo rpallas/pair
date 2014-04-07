@@ -21,4 +21,24 @@ angular.module('app').controller('requestListCtrl', function($scope, requestReso
         });
     };
 
+    $scope.acceptRequest = function(requestId){
+
+    };
+
+    $scope.rejectRequest = function(requestId){
+
+    };
+
+    $scope.rescheduleRequest = function(requestId){
+
+    };
+
+    $scope.deleteRequest = function(requestId){
+
+    };
+
+    $scope.initTooltips = function(){
+        $('[data-toggle=tooltip]').tooltip({ placement: 'bottom'});
+    };
+
 });
