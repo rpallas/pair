@@ -8,8 +8,8 @@ exports.getRequests = function(req, res){
     });
 };
 
-exports.getRequestsByUserId = function(req, res){
-    Request.find({toUser: req.params.toUser}).exec(function(err, requests){
+exports.getAllRequestsByUserId = function(req, res){
+    Request.find({ $or: [{toUser: req.params.userId}, {fromUser: req.params.userId}]}).exec(function(err, requests){
         res.send(requests);
     });
 };
@@ -17,7 +17,7 @@ exports.getRequestsByUserId = function(req, res){
 exports.createRequest = function(req, res, next){
     var requestData = req.body;
     requestData.sentDateTime = new Date();
-    requestData.state = 'Sent';
+    requestData.state = 'Waiting';
     Request.create(requestData, function(err, request){
         if(err){
             res.status(400);
