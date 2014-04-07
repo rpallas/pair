@@ -12,7 +12,7 @@
                 tr(ng-repeat="request in receivedRequests()")
                     td
                         a(href="/users/{{ request.fromUser }}") {{ request.fromUser }}
-                    td {{ request.sentDateTime | date:'dd/MM/yyyy hh:mm' }}
+                    td {{ request.sentDateTime | date:'dd/MM/yyyy HH:mm' }}
                     td {{ request.state }}
     h4 Sent:
     table.table.table-hover.table-striped.table-condensed
@@ -25,5 +25,5 @@
                 tr(ng-repeat="request in sentRequests()")
                     td
                         a(href="/users/{{ request.toUser }}") {{ request.toUser }}
-                    td {{ request.sentDateTime | date:'dd/MM/yyyy hh:mm' }}
+                    td {{ request.sentDateTime | date:'dd/MM/yyyy HH:mm' }}
                     td {{ request.state }}
