@@ -21,13 +21,13 @@
                     td {{ request.state }}
                     td(ng-init="initTooltips()")
                         a(href="/request/{{ request._id }}")
-                            span.glyphicon.glyphicon-info-sign(data-toggle="tooltip", title="More details")
+                            span.glyphicon.glyphicon-lg.glyphicon-info-sign(data-toggle="tooltip", title="More details")
                         a(ng-click="acceptRequest(request._id)" alt="Reject request")
-                            span.glyphicon.glyphicon-ok-circle(data-toggle="tooltip", title="Accept request")
+                            span.glyphicon.glyphicon-lg.glyphicon-ok-circle(data-toggle="tooltip", title="Accept request")
                         a(ng-click="rejectRequest(request._id)")
-                            span.glyphicon.glyphicon-ban-circle(data-toggle="tooltip", title="Reject request")
+                            span.glyphicon.glyphicon-lg.glyphicon-ban-circle(data-toggle="tooltip", title="Reject request")
                         a(ng-click="rescheduleRequest(request._id)")
-                            span.glyphicon.glyphicon-time(data-toggle="tooltip", title="Reschedule request")
+                            span.glyphicon.glyphicon-lg.glyphicon-time(data-toggle="tooltip", title="Reschedule request")
     h4 Sent:
     table.table.table-hover.table-striped.table-condensed
         thead
@@ -48,8 +48,8 @@
                     td {{ request.state }}
                     td(ng-init="initTooltips()")
                         a(href="/request/{{ request._id }}")
-                            span.glyphicon.glyphicon-info-sign(data-toggle="tooltip", title="More details")
+                            span.glyphicon.glyphicon-lg.glyphicon-info-sign(data-toggle="tooltip", title="More details")
                         a(ng-click="rescheduleRequest(request._id)")
-                            span.glyphicon.glyphicon-time(data-toggle="tooltip", title="Reschedule request")
+                            span.glyphicon.glyphicon-lg.glyphicon-time(data-toggle="tooltip", title="Reschedule request")
                         a(ng-click="deleteRequest(request._id)")
-                            span.glyphicon.glyphicon-remove-circle(data-toggle="tooltip", title="Delete request")
+                            span.glyphicon.glyphicon-lg.glyphicon-remove-circle(data-toggle="tooltip", title="Delete request")
