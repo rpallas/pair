@@ -14,10 +14,10 @@ module.exports = function(app, config){
     app.post('/api/users', users.createUser);
     app.put('/api/users', users.updateUser);
 
-    app.get('/api/requests', auth.requiresApiLogin, requests.getRequests);
-    app.get('/api/requests/:userId', auth.requiresApiLogin, requests.getAllRequestsByUserId);
     app.post('/api/requests', auth.requiresApiLogin, requests.createRequest);
-//    app.put('/api/requests', requests.updateRequest);
+    app.put('/api/requests', auth.requiresApiLogin, requests.updateRequest);
+    app.get('/api/user/:userId/requests', auth.requiresApiLogin, requests.getAllRequestsByUserId);
+//    app.get('/api/requests/:id', auth.requiresApiLogin, requests.getRequest);
 
     app.get('/partials/*', function(req, res){
         res.render('../../public/app/' + req.params);

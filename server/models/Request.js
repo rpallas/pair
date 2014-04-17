@@ -19,7 +19,7 @@ var requestSchema = mongoose.Schema({
         },
         required:'{PATH} is required!'
     },
-    state: {type: String, enum: ['Waiting', 'Accepted', 'Rejected', 'Rescheduled']},
+    state: {type: String, enum: ['Waiting', 'Accepted', 'Rejected', 'Reschedule']},
     sentDateTime: Date,
     responseDateTime: Date
 });
