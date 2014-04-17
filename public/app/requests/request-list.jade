@@ -5,10 +5,10 @@
     table.table.table-hover.table-striped.table-condensed
         thead
             tr
-                th From
-                th Recieved Date
-                th State
-                th Actions
+                th.col-md-4 From
+                th.col-md-4 Recieved Date
+                th.col-md-2 State
+                th.col-md-2 Actions
             tbody
                 tr(ng-repeat="request in receivedRequests()")
                     td
@@ -22,20 +22,20 @@
                     td(ng-init="initTooltips()")
                         a(href="/request/{{ request._id }}")
                             span.glyphicon.glyphicon-lg.glyphicon-info-sign(data-toggle="tooltip", title="More details")
-                        a(ng-click="acceptRequest(request._id)" alt="Reject request")
+                        a(ng-click="acceptRequest(request)" alt="Reject request")
                             span.glyphicon.glyphicon-lg.glyphicon-ok-circle(data-toggle="tooltip", title="Accept request")
-                        a(ng-click="rejectRequest(request._id)")
+                        a(ng-click="rejectRequest(request)")
                             span.glyphicon.glyphicon-lg.glyphicon-ban-circle(data-toggle="tooltip", title="Reject request")
-                        a(ng-click="rescheduleRequest(request._id)")
+                        a(ng-click="rescheduleRequest(request)")
                             span.glyphicon.glyphicon-lg.glyphicon-time(data-toggle="tooltip", title="Reschedule request")
     h4 Sent:
     table.table.table-hover.table-striped.table-condensed
         thead
             tr
-                th To
-                th Sent Date
-                th State
-                th Actions
+                th.col-md-4 To
+                th.col-md-4 Sent Date
+                th.col-md-2 State
+                th.col-md-2 Actions
             tbody
                 tr(ng-repeat="request in sentRequests()")
                     td
@@ -49,7 +49,7 @@
                     td(ng-init="initTooltips()")
                         a(href="/request/{{ request._id }}")
                             span.glyphicon.glyphicon-lg.glyphicon-info-sign(data-toggle="tooltip", title="More details")
-                        a(ng-click="rescheduleRequest(request._id)")
+                        a(ng-click="rescheduleRequest(request)")
                             span.glyphicon.glyphicon-lg.glyphicon-time(data-toggle="tooltip", title="Reschedule request")
-                        a(ng-click="deleteRequest(request._id)")
+                        a(ng-click="deleteRequest(request)")
                             span.glyphicon.glyphicon-lg.glyphicon-remove-circle(data-toggle="tooltip", title="Delete request")
