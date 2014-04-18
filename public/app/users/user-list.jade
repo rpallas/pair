@@ -5,7 +5,7 @@
                 input.form-control(ng-model="searchText", placeHolder="filter by" autocomplete="off")
             .form-group.margin-left-med
                 select.form-control(ng-model="sortOrder", ng-options="item.value as item.label for item in sortOptions")
-    table.table.table-hover.table-striped.table-condensed
+    table.table.table-hover.table-striped.table-condensed.header-fixed
         thead
             tr
                 th Name

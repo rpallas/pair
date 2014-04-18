@@ -2,13 +2,13 @@
     h2 Pair Requests
     p Track your sent and recieved requests here
     h4 Recieved:
-    table.table.table-hover.table-striped.table-condensed
+    table.table.table-hover.table-striped.table-condensed.header-fixed
         thead
             tr
-                th.col-md-4 From
-                th.col-md-4 Recieved Date
-                th.col-md-2 State
-                th.col-md-2 Actions
+                th From
+                th Recieved
+                th State
+                th Actions
             tbody
                 tr(ng-repeat="request in receivedRequests()")
                     td
@@ -29,13 +29,13 @@
                         a(ng-click="rescheduleRequest(request)")
                             span.glyphicon.glyphicon-lg.glyphicon-time(data-toggle="tooltip", title="Reschedule request")
     h4 Sent:
-    table.table.table-hover.table-striped.table-condensed
+    table.table.table-hover.table-striped.table-condensed.header-fixed
         thead
             tr
-                th.col-md-4 To
-                th.col-md-4 Sent Date
-                th.col-md-2 State
-                th.col-md-2 Actions
+                th To
+                th Sent
+                th State
+                th Actions
             tbody
                 tr(ng-repeat="request in sentRequests()")
                     td
