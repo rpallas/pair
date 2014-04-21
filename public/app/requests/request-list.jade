@@ -2,54 +2,56 @@
     h2 Pair Requests
     p Track your sent and recieved requests here
     h4 Recieved:
-    table.table.table-hover.table-striped.table-condensed.header-fixed
+    .well(ng-show="!hasReceivedRequests()") You have not received any pair requests yet
+    table.table.table-hover.table-striped.table-condensed.header-fixed(ng-show="hasReceivedRequests()")
         thead
             tr
                 th From
                 th Recieved
                 th State
                 th Actions
-            tbody
-                tr(ng-repeat="request in receivedRequests()")
-                    td
-                        a(href="/users/{{ request.fromUser.id }}")
-                            img.profile-img-icon.img-responsive.img(ng-src="{{ request.fromUser.avatarUrl }}", alt="Profile picture icon")
-                        | &nbsp;
-                        a(href="/users/{{ request.fromUser.id }}")
-                            | {{ request.fromUser.displayName }}
-                    td {{ request.sentDateTime | date:'d MMM, yyyy HH:mm' }}
-                    td {{ request.state }}
-                    td(ng-init="initTooltips()")
-                        a(href="/request/{{ request._id }}")
-                            span.glyphicon.glyphicon-lg.glyphicon-info-sign(data-toggle="tooltip", title="More details")
-                        a(ng-click="acceptRequest(request)" alt="Reject request")
-                            span.glyphicon.glyphicon-lg.glyphicon-ok-circle(data-toggle="tooltip", title="Accept request")
-                        a(ng-click="rejectRequest(request)")
-                            span.glyphicon.glyphicon-lg.glyphicon-ban-circle(data-toggle="tooltip", title="Reject request")
-                        a(ng-click="rescheduleRequest(request)")
-                            span.glyphicon.glyphicon-lg.glyphicon-time(data-toggle="tooltip", title="Reschedule request")
+        tbody
+            tr(ng-repeat="request in receivedRequests()")
+                td
+                    a(href="/users/{{ request.fromUser.id }}")
+                        img.profile-img-icon.img-responsive.img(ng-src="{{ request.fromUser.avatarUrl }}", alt="Profile picture icon")
+                    | &nbsp;
+                    a(href="/users/{{ request.fromUser.id }}")
+                        | {{ request.fromUser.displayName }}
+                td {{ request.sentDateTime | date:'d MMM, yyyy HH:mm' }}
+                td {{ request.state }}
+                td(ng-init="initTooltips()")
+                    a(href="/request/{{ request._id }}")
+                        span.glyphicon.glyphicon-lg.glyphicon-info-sign(data-toggle="tooltip", title="More details")
+                    a(ng-click="acceptRequest(request)" alt="Reject request")
+                        span.glyphicon.glyphicon-lg.glyphicon-ok-circle(data-toggle="tooltip", title="Accept request")
+                    a(ng-click="rejectRequest(request)")
+                        span.glyphicon.glyphicon-lg.glyphicon-ban-circle(data-toggle="tooltip", title="Reject request")
+                    a(ng-click="rescheduleRequest(request)")
+                        span.glyphicon.glyphicon-lg.glyphicon-time(data-toggle="tooltip", title="Reschedule request")
     h4 Sent:
-    table.table.table-hover.table-striped.table-condensed.header-fixed
+    .well(ng-show="!hasSentRequests()") You have not sent any pair requests yet
+    table.table.table-hover.table-striped.table-condensed.header-fixed(ng-show="hasSentRequests()")
         thead
             tr
                 th To
                 th Sent
                 th State
                 th Actions
-            tbody
-                tr(ng-repeat="request in sentRequests()")
-                    td
-                        a(href="/users/{{ request.toUser.id }}")
-                            img.profile-img-icon.img-responsive.img(ng-src="{{ request.toUser.avatarUrl }}", alt="Profile picture icon")
-                        | &nbsp;
-                        a(href="/users/{{ request.toUser.id }}")
-                            | {{ request.toUser.displayName }}
-                    td {{ request.sentDateTime | date:'d MMM, yyyy HH:mm' }}
-                    td {{ request.state }}
-                    td(ng-init="initTooltips()")
-                        a(href="/request/{{ request._id }}")
-                            span.glyphicon.glyphicon-lg.glyphicon-info-sign(data-toggle="tooltip", title="More details")
-                        a(ng-click="rescheduleRequest(request)")
-                            span.glyphicon.glyphicon-lg.glyphicon-time(data-toggle="tooltip", title="Reschedule request")
-                        a(ng-click="deleteRequest(request)")
-                            span.glyphicon.glyphicon-lg.glyphicon-remove-circle(data-toggle="tooltip", title="Delete request")
+        tbody
+            tr(ng-repeat="request in sentRequests()")
+                td
+                    a(href="/users/{{ request.toUser.id }}")
+                        img.profile-img-icon.img-responsive.img(ng-src="{{ request.toUser.avatarUrl }}", alt="Profile picture icon")
+                    | &nbsp;
+                    a(href="/users/{{ request.toUser.id }}")
+                        | {{ request.toUser.displayName }}
+                td {{ request.sentDateTime | date:'d MMM, yyyy HH:mm' }}
+                td {{ request.state }}
+                td(ng-init="initTooltips()")
+                    a(href="/request/{{ request._id }}")
+                        span.glyphicon.glyphicon-lg.glyphicon-info-sign(data-toggle="tooltip", title="More details")
+                    a(ng-click="rescheduleRequest(request)")
+                        span.glyphicon.glyphicon-lg.glyphicon-time(data-toggle="tooltip", title="Reschedule request")
+                    a(ng-click="deleteRequest(request)")
+                        span.glyphicon.glyphicon-lg.glyphicon-remove-circle(data-toggle="tooltip", title="Delete request")

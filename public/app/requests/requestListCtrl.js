@@ -12,6 +12,10 @@ angular.module('app').controller('requestListCtrl', function($scope, userRequest
         });
     };
 
+    $scope.hasReceivedRequests = function(){
+        return $scope.receivedRequests().length > 0;
+    };
+
     $scope.sentRequests = function(){
         return $scope.requests.filter(function(request){
             if(identitySvc.currentUser === undefined) {
@@ -20,6 +24,11 @@ angular.module('app').controller('requestListCtrl', function($scope, userRequest
             return request.fromUser.id === identitySvc.currentUser._id;
         });
     };
+
+    $scope.hasSentRequests = function(){
+        return $scope.sentRequests().length > 0;
+    };
+
 
     $scope.acceptRequest = function(request){
         updateRequestState(request, "Accepted");
