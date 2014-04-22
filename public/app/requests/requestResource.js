@@ -2,7 +2,6 @@
 
 angular.module('app').factory('requestResource', function($resource){
     var RequestResource = $resource('/api/requests/:_id', {_id: "@id", state: "@state"}, {
-        get: {method:'GET', isArray:true },
         update: {method:'PUT', isArray:false }
     });
 

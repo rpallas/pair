@@ -1,0 +1,16 @@
+.container
+    ul.list-inline.text-center
+        li
+            img.center-block.profile-img.img-responsive.img-thumbnail(ng-src="{{request.fromUser.avatarUrl}}", alt="Requesting user profile picture")
+            .text-center {{ request.fromUser.displayName }}
+        li
+            i.glyphicon.glyphicon-arrow-right.glyphicon-align-center
+        li
+            img.center-block.profile-img.img-responsive.img-thumbnail(ng-src="{{request.toUser.avatarUrl}}", alt="Target user profile picture")
+            .text-center {{ request.toUser.displayName }}
+    .row
+        .col-md-12.top-padding-med
+            .panel.panel-default
+                .panel-heading Message
+                .panel-body
+                    p {{ request.message }}

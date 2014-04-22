@@ -2,6 +2,12 @@
 
 var Request = require('mongoose').model('Request');
 
+exports.getRequest = function(req, res){
+    Request.findOne({_id: req.params.id}).exec(function(err, doc){
+        res.send(doc);
+    });
+};
+
 exports.getRequests = function(req, res){
     Request.find({}).exec(function(err, collection){
         res.send(collection);

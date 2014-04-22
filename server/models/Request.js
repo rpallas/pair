@@ -21,7 +21,8 @@ var requestSchema = mongoose.Schema({
     },
     state: {type: String, enum: ['Waiting', 'Accepted', 'Rejected', 'Reschedule']},
     sentDateTime: Date,
-    responseDateTime: Date
+    responseDateTime: Date,
+    message: String
 });
 
 requestSchema.methods = {
