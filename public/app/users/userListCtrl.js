@@ -1,7 +1,17 @@
 'use strict';
 
-angular.module('app').controller('userListCtrl', function($scope, userResource){
+angular.module('app').controller('userListCtrl', function($scope, userResource, identitySvc){
     $scope.users = userResource.query();
+
+    $scope.otherUsers = function(){
+        return $scope.users.filter(function(user){
+            return user._id !== identitySvc.currentUser._id;
+        });
+    };
+
+    $scope.hasUsers = function(){
+        return $scope.otherUsers().length > 0;
+    };
 
     $scope.sortOptions = [
         { value: "displayName", label: "Sort by Display Name" },

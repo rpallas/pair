@@ -5,7 +5,8 @@
                 input.form-control(ng-model="searchText", placeHolder="filter by" autocomplete="off")
             .form-group.margin-left-med
                 select.form-control(ng-model="sortOrder", ng-options="item.value as item.label for item in sortOptions")
-    table.table.table-hover.table-striped.table-condensed.header-fixed
+    .well(ng-show="!hasUsers()") Unable to get user list
+    table.table.table-hover.table-striped.table-condensed.header-fixed(ng-show="hasUsers()")
         thead
             tr
                 th Name
@@ -13,7 +14,7 @@
                 th Points
                 th Skills
             tbody
-                tr(ng-repeat="user in users | filter:searchText | orderBy:sortOrder")
+                tr(ng-repeat="user in otherUsers() | filter:searchText | orderBy:sortOrder")
                     td
                         a(href="/users/{{ user._id }}")
                             img.profile-img-icon.img-responsive.img(ng-src="{{ user.getProfileImage() }}", alt="Profile picture icon")
