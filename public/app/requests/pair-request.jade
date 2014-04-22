@@ -1,0 +1,18 @@
+.container
+    .row
+        .col-md-5
+            .pull-right
+                img.center-block.profile-img.img-responsive.img-thumbnail(ng-src="{{identity.currentUser.getProfileImage()}}", alt="Requesting user profile picture")
+                .text-center {{ identity.currentUser.displayName }}
+        .col-md-2.text-center
+            i.glyphicon.glyphicon-arrow-right
+        .col-md-5
+            .pull-left
+                img.center-block.profile-img.img-responsive.img-thumbnail(ng-src="{{targetUser.getProfileImage()}}", alt="Target user profile picture")
+                .text-center {{ targetUser.displayName }}
+    .row
+        .col-md-4.col-md-offset-4
+            form.pair-request-form
+                .form-group
+                    textarea.form-control(placeholder="Message", ng-model="message")
+                button.btn.btn-primary(ng-click="requestPair(message)") Send

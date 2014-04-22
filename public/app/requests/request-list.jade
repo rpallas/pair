@@ -21,7 +21,7 @@
                 td {{ request.sentDateTime | date:'d MMM, yyyy HH:mm' }}
                 td {{ request.state }}
                 td(ng-init="initTooltips()")
-                    a(href="/request/{{ request._id }}")
+                    a(href="/requests/{{ request._id }}")
                         span.glyphicon.glyphicon-lg.glyphicon-info-sign(data-toggle="tooltip", title="More details")
                     a(ng-click="acceptRequest(request)" alt="Reject request")
                         span.glyphicon.glyphicon-lg.glyphicon-ok-circle(data-toggle="tooltip", title="Accept request")
@@ -49,7 +49,7 @@
                 td {{ request.sentDateTime | date:'d MMM, yyyy HH:mm' }}
                 td {{ request.state }}
                 td(ng-init="initTooltips()")
-                    a(href="/request/{{ request._id }}")
+                    a(href="/requests/{{ request._id }}")
                         span.glyphicon.glyphicon-lg.glyphicon-info-sign(data-toggle="tooltip", title="More details")
                     a(ng-click="rescheduleRequest(request)")
                         span.glyphicon.glyphicon-lg.glyphicon-time(data-toggle="tooltip", title="Reschedule request")
