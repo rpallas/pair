@@ -10,7 +10,7 @@
                 th Recieved
                 th State
                 th Actions
-        tbody
+        tbody.table-body-sm
             tr(ng-repeat="request in receivedRequests()")
                 td
                     a(href="/users/{{ request.fromUser.id }}")
@@ -31,14 +31,14 @@
                         span.glyphicon.glyphicon-lg.glyphicon-time(data-toggle="tooltip", title="Reschedule request")
     h4 Sent:
     .well(ng-show="!hasSentRequests()") You have not sent any pair requests yet
-    table.table.table-hover.table-striped.table-condensed.header-fixed(ng-show="hasSentRequests()")
+    table.table.table-hover.table-striped.table-condensed.header-fixed.table-sm(ng-show="hasSentRequests()")
         thead
             tr
                 th To
                 th Sent
                 th State
                 th Actions
-        tbody
+        tbody.table-body-sm
             tr(ng-repeat="request in sentRequests()")
                 td
                     a(href="/users/{{ request.toUser.id }}")

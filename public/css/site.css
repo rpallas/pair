@@ -48,6 +48,13 @@ a span.glyphicon {
   font-size: 18px;
   line-height: 1.33;
 }
+.row.request {
+  padding: 3px 0;
+}
+img {
+  padding-right: 5px;
+}
+/* Fixed Header table */
 .header-fixed {
   width: 100%;
 }
@@ -68,7 +75,6 @@ a span.glyphicon {
 }
 .header-fixed > tbody {
   overflow-y: auto;
-  height: 200px;
 }
 .header-fixed > tbody > tr > td,
 .header-fixed > thead > tr > th {
@@ -79,6 +85,9 @@ a span.glyphicon {
   height: 40px;
   overflow-y: auto;
 }
-.center-block {
-  float: none;
+.table-body-sm {
+  height: 200px;
+}
+.table-body-lg {
+  height: 0.8vh;
 }

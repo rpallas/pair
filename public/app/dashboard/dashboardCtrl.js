@@ -11,12 +11,14 @@ angular.module('app').controller('dashboardCtrl', function($scope, identitySvc, 
 
     $scope.requests = userRequestResource
         .query({userId:identitySvc.currentUser._id, limit: 5, sort: 'descending'}, function(data){
-            // Add a field to each request saying if it was sent or received
+            // Add display fields to each request for if it was sent or received
             _.each(data, function(request){
                 if(request.toUser.id === identitySvc.currentUser._id){
                     request.direction = 'received';
+                    request.otherUser = request.fromUser;
                 } else {
                     request.direction = 'sent';
+                    request.otherUser = request.toUser;
                 }
             });
         });
