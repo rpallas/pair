@@ -9,24 +9,35 @@ exports.getRequest = function(req, res){
 };
 
 exports.getRequests = function(req, res){
-    Request.find({}).exec(function(err, collection){
+    Request.find().exec(function(err, collection){
         res.send(collection);
     });
 };
 
+exports.getReceivedRequests = function(req, res){
+    var query = Request.find({"toUser.id": req.params.userId});
+    if(req.query.limit){ query.limit(req.query.limit); }
+    query.exec(function(err, requests){
+        res.send(requests);
+    });
+};
+
+exports.getSentRequests = function(req, res){
+    var query = Request.find({"fromUser.id": req.params.userId});
+    if(req.query.limit){ query.limit(req.query.limit); }
+    query.exec(function(err, requests){
+        res.send(requests);
+    });
+};
+
 exports.getAllRequestsByUserId = function(req, res){
-//    Request.find({
-//        $or: [
-//            {"toUser.id": req.params.userId},
-//            {"fromUser.id": req.params.userId}
-//        ]
-//    }).exec(function(err, requests){
-//        res.send(requests);
-//    });
-    Request.find().or([
+    var query = Request.find().or([
         {"toUser.id": req.params.userId},
         {"fromUser.id": req.params.userId}
-    ]).exec(function(err, requests){
+    ]);
+    if(req.query.limit){ query.limit(req.query.limit); }
+    if(req.query.sort){ query.sort([['sentDateTime', req.query.sort]]); }
+    query.exec(function(err, requests){
         res.send(requests);
     });
 };

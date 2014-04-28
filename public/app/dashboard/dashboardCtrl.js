@@ -1,12 +1,25 @@
 "use strict";
 
-angular.module('app').controller('dashboardCtrl', function($scope, identitySvc) {
+angular.module('app').controller('dashboardCtrl', function($scope, identitySvc, userRequestResource, $window) {
 
+    var _ = $window._;
     $scope.email = identitySvc.currentUser.username;
     $scope.displayName = identitySvc.currentUser.displayName;
     $scope.skills = identitySvc.currentUser.skills;
     $scope.status = identitySvc.currentUser.status;
     $scope.points = identitySvc.currentUser.points;
+
+    $scope.requests = userRequestResource
+        .query({userId:identitySvc.currentUser._id, limit: 5, sort: 'descending'}, function(data){
+            // Add a field to each request saying if it was sent or received
+            _.each(data, function(request){
+                if(request.toUser.id === identitySvc.currentUser._id){
+                    request.direction = 'received';
+                } else {
+                    request.direction = 'sent';
+                }
+            });
+        });
 
     // Sample data
     $scope.activityFeedItems = [

@@ -1,0 +1,7 @@
+panel.panel-default
+    .panel-heading Requests
+    .panel-body
+        .row(ng-repeat="item in requests")
+            .col-lg-5 {{item.fromUser.displayName}}
+            .col-lg-4 {{item.direction}}
+            .col-lg-3 {{item.sentDateTime | date:'MMM d'}}
