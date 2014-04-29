@@ -19,6 +19,7 @@ exports.createUser = function(req, res, next){
     var userData = req.body;
     userData.username = userData.username.toLowerCase(); // Prevents duplicate users with different casing in email address
     userData.points = 0; // initialise the points to zero
+    userData.status = "Unavailable"; // initialise the status
     userData.salt = encrypt.createSalt();
     userData.hashed_pwd = encrypt.hashPwd(userData.salt, userData.password);
     User.create(userData, function(err, user){
