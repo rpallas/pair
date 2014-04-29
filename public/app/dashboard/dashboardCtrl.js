@@ -23,6 +23,16 @@ angular.module('app').controller('dashboardCtrl', function($scope, identitySvc, 
             });
         });
 
+    $scope.initSkillTags = function(){
+        $('#dash-skills-tags').tags({
+            tagData: $scope.skills,
+            suggestions:["basic", "suggestions"],
+            excludeList:["not", "these", "words"],
+            readOnlyEmptyMessage: 'This ninja\'s skills are not listed yet',
+            readOnly: true
+        });
+    };
+
     // Sample data
     $scope.activityFeedItems = [
         {text: "Something happened", published: new Date()},
