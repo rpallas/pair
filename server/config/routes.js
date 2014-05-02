@@ -3,9 +3,9 @@
 var auth = require('./auth'),
     users = require('../controllers/users'),
     requests = require('../controllers/requests'),
-    mongoose = require('mongoose'),
-    User = mongoose.model('User'),
-    Request = mongoose.model('Request');
+    mongoose = require('mongoose');
+//    User = mongoose.model('User'),
+//    Request = mongoose.model('Request');
 
 module.exports = function(app, config){
 
