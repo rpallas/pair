@@ -9,7 +9,7 @@ angular.module('app').controller('requestListCtrl', function($scope, userRequest
                 return false;
             }
             return request.toUser.id === identitySvc.currentUser._id;
-        });
+        }).sort(sortByRequestDate);
     };
 
     $scope.hasReceivedRequests = function(){
@@ -22,7 +22,7 @@ angular.module('app').controller('requestListCtrl', function($scope, userRequest
                 return false;
             }
             return request.fromUser.id === identitySvc.currentUser._id;
-        });
+        }).sort(sortByRequestDate);
     };
 
     $scope.hasSentRequests = function(){
@@ -64,6 +64,10 @@ angular.module('app').controller('requestListCtrl', function($scope, userRequest
                 console.log("Reason: " + response.data.reason);
             }
         );
+    }
+
+    function sortByRequestDate(requestA, requestB){
+        return new Date(requestB.sentDateTime) - new Date(requestA.sentDateTime);
     }
 
 });
