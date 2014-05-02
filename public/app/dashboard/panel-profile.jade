@@ -3,7 +3,8 @@ panel.panel-default
     .panel-body
         .well.well-small
             .row
-                .col-md-3
+                .col-md-3.text-center
+                    a.btn.btn-info.btn-sm.bottom-padding-med(href="/profile") Edit Profile
                     img.profile-img.img-responsive.img-thumbnail(ng-src="{{identity.currentUser.getProfileImage()}}", alt="Requesting user profile picture")
                     .text-center {{ identity.currentUser.displayName }}
                 .col-md-9

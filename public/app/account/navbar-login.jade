@@ -19,6 +19,8 @@
                 li(ng-show="identity.currentUser.isAdmin()")
                     a(href="/admin/users") User Admin
                 li
-                    a(href="/profile") Profile
+                    a(href="/users/{{identity.currentUser._id}}") View Profile
+                li
+                    a(href="/profile") Edit Profile
                 li
                     a(href="", ng-click="signout()") Sign Out
