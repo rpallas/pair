@@ -3,6 +3,10 @@
 angular.module('app').controller('userDetailCtrl', function($scope, userResource, requestResource, $routeParams, $q, identitySvc, notifierSvc, config){
     $scope.user = userResource.get({_id: $routeParams.id});
 
+    $scope.isCurrentUser = function(){
+        return $routeParams.id === identitySvc.currentUser._id;
+    };
+
     $scope.requestPair = function(){
         var dfd = $q.defer(),
             request = new requestResource({

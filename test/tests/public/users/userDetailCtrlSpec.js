@@ -30,4 +30,31 @@ describe('userDetailCtrl', function(){
         expect(mockUser.get.args[0][0]).to.deep.equal({_id: 123});
     });
 
+    describe('$scope.isCurrentUser', function(){
+
+        var mockUserData, mockIdentitySvc, dependencies;
+
+        beforeEach(function(){
+            mockIdentitySvc = { currentUser: { _id: 123456 } };
+            mockUserData = {};
+            mockUser.get.returns(mockUserData);
+            dependencies = { $scope: scope, userResource: mockUser, identitySvc: mockIdentitySvc };
+        });
+
+        it('should return true if this is the current users profile view', function(){
+            dependencies.$routeParams = { id: mockIdentitySvc.currentUser._id };
+            $controllerCtr('userDetailCtrl', dependencies);
+            var result = scope.isCurrentUser();
+            expect(result).to.be.true;
+        });
+
+        it('should return false if this is not the current users profile view', function(){
+            dependencies.$routeParams = { id: 999 };
+            $controllerCtr('userDetailCtrl', dependencies);
+            var result = scope.isCurrentUser();
+            expect(result).to.be.false;
+        });
+
+    });
+
 });
