@@ -2,13 +2,14 @@
 'use strict';
 
 describe('profileCtrl', function(){
-    var $controllerCtr, scope, mockAuthSvc, mockNotifierSvc, mockIdentitySvc, dfd;
+    var $controllerCtr, scope, mockAuthSvc, mockNotifierSvc, mockIdentitySvc, dfd, location;
 
     beforeEach(module('app'));
 
-    beforeEach(inject(function($controller, $rootScope, $q){
+    beforeEach(inject(function($controller, $rootScope, $q, $location){
         dfd = $q.defer();
         $controllerCtr = $controller;
+        location = $location;
         scope = $rootScope.$new();
         mockIdentitySvc = {
             currentUser: {
@@ -25,7 +26,8 @@ describe('profileCtrl', function(){
             $scope: scope,
             authSvc: mockAuthSvc,
             identitySvc: mockIdentitySvc,
-            notifierSvc: mockNotifierSvc
+            notifierSvc: mockNotifierSvc,
+            $location: location
         });
     }));
 
@@ -61,6 +63,14 @@ describe('profileCtrl', function(){
             scope.update();
             scope.$root.$digest();
             expect(mockNotifierSvc.notify.called).to.be.true;
+        });
+
+        it('should redirect to the readonly profile if the update was successful', function(){
+            var stubLocation = sinon.stub(location, "path");
+            dfd.resolve(true); // Simulate successful update
+            scope.update();
+            scope.$root.$digest();
+            expect(stubLocation.calledWith('/users/' + mockIdentitySvc.currentUser._id)).to.be.true;
         });
 
         it('should call notifierSvc.error if the update failed', function(){

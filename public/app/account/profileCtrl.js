@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app').controller('profileCtrl', function($scope, authSvc, identitySvc, notifierSvc){
+angular.module('app').controller('profileCtrl', function($scope, authSvc, identitySvc, notifierSvc, $location){
 
     $scope.email = identitySvc.currentUser.username;
     $scope.displayName = identitySvc.currentUser.displayName;
@@ -21,6 +21,7 @@ angular.module('app').controller('profileCtrl', function($scope, authSvc, identi
 
         authSvc.updateCurrentUser(updatedUserData).then(
             function(){
+                $location.path('/users/' + identitySvc.currentUser._id);
                 notifierSvc.notify('Your user profile has been updated');
             },
             function(reason){
