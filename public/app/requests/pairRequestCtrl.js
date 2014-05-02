@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app').controller('pairRequestCtrl', function($scope, userResource, requestResource, $routeParams, $q, identitySvc, notifierSvc, config){
+angular.module('app').controller('pairRequestCtrl', function($scope, userResource, requestResource, $routeParams, $q, identitySvc, notifierSvc, config, $location){
     $scope.targetUser = userResource.get({_id: $routeParams.id});
     $scope.identity = identitySvc;
 
@@ -24,6 +24,7 @@ angular.module('app').controller('pairRequestCtrl', function($scope, userResourc
             function(){ // On success
                 notifierSvc.notify("Pair request sent");
                 dfd.resolve();
+                $location.path('/requests');
             },
             function(response){ // On error
                 notifierSvc.error("Error sending pair request");
