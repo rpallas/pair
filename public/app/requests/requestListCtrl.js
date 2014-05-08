@@ -9,7 +9,7 @@ angular.module('app').controller('requestListCtrl', function($scope, userRequest
                 return false;
             }
             return request.toUser.id === identitySvc.currentUser._id;
-        }).sort(sortByRequestDate);
+        }).sort(sortByLatest);
     };
 
     $scope.hasReceivedRequests = function(){
@@ -22,7 +22,7 @@ angular.module('app').controller('requestListCtrl', function($scope, userRequest
                 return false;
             }
             return request.fromUser.id === identitySvc.currentUser._id;
-        }).sort(sortByRequestDate);
+        }).sort(sortByLatest);
     };
 
     $scope.hasSentRequests = function(){
@@ -66,7 +66,7 @@ angular.module('app').controller('requestListCtrl', function($scope, userRequest
         );
     }
 
-    function sortByRequestDate(requestA, requestB){
+    function sortByLatest(requestA, requestB){
         return new Date(requestB.sentDateTime) - new Date(requestA.sentDateTime);
     }
 

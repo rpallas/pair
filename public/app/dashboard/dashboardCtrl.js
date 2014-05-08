@@ -23,6 +23,10 @@ angular.module('app').controller('dashboardCtrl', function($scope, identitySvc, 
             });
         });
 
+    $scope.hasRequests = function(){
+        return $scope.requests.length > 0;
+    };
+
     $scope.initSkillTags = function(){
         $('#dash-skills-tags').tags({
             tagData: $scope.skills,
