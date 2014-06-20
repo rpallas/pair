@@ -4,6 +4,9 @@ angular.module('app').controller('pairRequestCtrl', function($scope, userResourc
     $scope.targetUser = userResource.get({_id: $routeParams.id});
     $scope.identity = identitySvc;
 
+    $scope.timeList = [];
+    $scope.time = "";
+
     $scope.requestPair = function(message){
         var dfd = $q.defer(),
             request = new requestResource({
@@ -17,7 +20,8 @@ angular.module('app').controller('pairRequestCtrl', function($scope, userResourc
                     displayName: $scope.targetUser.displayName,
                     avatarUrl: $scope.targetUser.avatarUrl || config.blankProfileImage
                 },
-                message: message
+                message: message,
+                timeList: $scope.timeList
             });
 
         request.$save().then(
@@ -33,5 +37,10 @@ angular.module('app').controller('pairRequestCtrl', function($scope, userResourc
         );
 
         return dfd.promise;
+    };
+
+    $scope.addTimeToList = function(time){
+        $scope.timeList.push(time);
+        $scope.time = "";
     };
 });

@@ -9,6 +9,7 @@ require('./server/config/express')(app, config);
 
 // Connect to DB
 require('./server/config/mongoose')(config);
+
 // Configure passport
 require('./server/config/passport')(config);
 

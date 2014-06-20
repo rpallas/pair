@@ -1,6 +1,6 @@
 'use strict';
-
 var express = require('express'),
+    MongoStore = require('connect-mongo')(express),
     stylus = require('stylus'),
     passport = require('passport');
 
@@ -15,7 +15,12 @@ module.exports = function(app, config) {
         app.use(express.logger('dev'));
         app.use(express.cookieParser());
         app.use(express.bodyParser());
-        app.use(express.session({ secret: "pairing ninja turtles" }));
+        app.use(express.session({
+            secret: "pairing ninja turtles",
+            store: new MongoStore({
+                url: config.db
+            })
+        }));
         app.use(passport.initialize());
         app.use(passport.session());
         app.use(stylus.middleware({
