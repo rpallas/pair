@@ -3,6 +3,7 @@
 angular.module('app').controller('pairRequestCtrl', function($scope, userResource, requestResource, $routeParams, $q, identitySvc, notifierSvc, config, $location){
     $scope.targetUser = userResource.get({_id: $routeParams.id});
     $scope.identity = identitySvc;
+    $scope.maxTimeListItems = config.maxTimeListItems;
 
     $scope.timeList = [];
     $scope.time = "";
@@ -39,8 +40,18 @@ angular.module('app').controller('pairRequestCtrl', function($scope, userResourc
         return dfd.promise;
     };
 
-    $scope.addTimeToList = function(time){
-        $scope.timeList.push(time);
-        $scope.time = "";
+    $scope.addTimeSuggestion = function(){
+        if($scope.canAddToTimeList()){
+            $scope.timeList.push($scope.time);
+            $scope.time = "";
+        }
     };
+
+    $scope.canAddToTimeList = function () {
+        return $scope.timeList.length < $scope.maxTimeListItems;
+    };
+
+//    $scope.removeTimeSuggestion = function(time){
+//        $scope.timeList.remove(time);
+//    };
 });

@@ -1,1 +1,1 @@
-<ul><li ng-repeat="time in timeList"><span>{{ time }}</span></li></ul>
+<ul class="list-unstyled time-list icon-time"><li ng-repeat="time in timeList"><span>{{ time }}<span ng-click="removeTimeSuggestion(time)" class="pull-right glyphicon glyphicon-remove"></span></span></li></ul><div ng-hide="hasTimes()" class="well">Add up to {{ maxTimeListItems }} suggested dates/times</div>

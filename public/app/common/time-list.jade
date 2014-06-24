@@ -1,3 +1,5 @@
-ul
+ul.list-unstyled.time-list.icon-time
     li(ng-repeat="time in timeList")
         span {{ time }}
+            span.pull-right.glyphicon.glyphicon-remove(ng-click="removeTimeSuggestion(time)")
+.well(ng-hide="hasTimes()") Add up to {{ maxTimeListItems }} suggested dates/times
