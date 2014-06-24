@@ -1,5 +1,11 @@
-ul.list-unstyled.time-list.icon-time
-    li(ng-repeat="time in timeList")
-        span {{ time }}
-            span.pull-right.glyphicon.glyphicon-remove(ng-click="removeTimeSuggestion(time)")
-.well(ng-hide="hasTimes()") Add up to {{ maxTimeListItems }} suggested dates/times
+.time-list
+    form(ng-show="isEditMode()")
+        input.input-sm(type="text", ng-model="time")
+        button.btn.btn-sm.btn-default.margin-left-sm(ng-click="addTime()" ng-disabled="!canAddToTimeList()") Add time
+    .well(ng-hide="hasTimes()")
+        | Add up to {{ maxTimeListItems }} suggested dates/times
+    ul.list-unstyled.time-list.icon-time
+        li(ng-repeat="time in timeList")
+            span {{ time }}
+            span(ng-show="isEditMode()").pull-right.glyphicon.glyphicon-remove(ng-click="removeTime(time)")
+            span(ng-hide="isEditMode()").pull-right.glyphicon.glyphicon-ok(ng-click="acceptTime(time)")

@@ -8,8 +8,9 @@
         li
             img.center-block.profile-img.img-responsive.img-thumbnail(ng-src="{{request.toUser.avatarUrl}}", alt="Target user profile picture")
             .text-center {{ request.toUser.displayName }}
-    .row(ng-model="request")
-        div(ng-include="'/partials/common/time-list'")
+    .row
+        .col-md-4.col-md-offset-4
+            pair-time-list(bind="request.timeList" mode="view")
     .row
         .col-md-12.top-padding-med
             .panel.panel-default
