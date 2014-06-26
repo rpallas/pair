@@ -4,7 +4,10 @@ angular.module('app').controller('userDetailCtrl', function($scope, userResource
     $scope.user = userResource.get({_id: $routeParams.id});
 
     $scope.isCurrentUser = function(){
-        return $routeParams.id === identitySvc.currentUser._id;
+        if(identitySvc.currentUser){
+            return $routeParams.id === identitySvc.currentUser._id;
+        }
+        return false;
     };
 
     $scope.requestPair = function(){
