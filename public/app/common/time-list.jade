@@ -6,6 +6,6 @@
         | Add up to {{ maxTimeListItems }} suggested dates/times
     ul.list-unstyled.time-list.icon-time
         li(ng-repeat="time in timeList")
-            span {{ time }}
-            span(ng-show="isEditMode()").pull-right.glyphicon.glyphicon-remove(ng-click="removeTime(time)")
-            span(ng-hide="isEditMode()").pull-right.glyphicon.glyphicon-ok(ng-click="acceptTime(time)")
+            span {{ time.text }}
+            span(ng-show="isEditMode()" ng-click="removeTime(time)").pull-right.glyphicon.glyphicon-remove
+            span(ng-hide="isEditMode()" ng-click="acceptTime(time)").pull-right.glyphicon.glyphicon-ok

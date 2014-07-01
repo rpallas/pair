@@ -5,7 +5,7 @@ angular.module('app').controller('pairRequestCtrl', function($scope, userResourc
     $scope.identity = identitySvc;
 
     $scope.requestPair = function(message){
-        var dfd = $q.defer(),
+        var deferred = $q.defer(),
             request = new requestResource({
                 fromUser: {
                     id: identitySvc.currentUser._id,
@@ -24,16 +24,16 @@ angular.module('app').controller('pairRequestCtrl', function($scope, userResourc
         request.$save().then(
             function(){ // On success
                 notifierSvc.notify("Pair request sent");
-                dfd.resolve();
+                deferred.resolve();
                 $location.path('/requests');
             },
             function(response){ // On error
                 notifierSvc.error("Error sending pair request");
-                dfd.reject(response.data.reason);
+                deferred.reject(response.data.reason);
             }
         );
 
-        return dfd.promise;
+        return deferred.promise;
     };
 
 });

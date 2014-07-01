@@ -2,20 +2,25 @@
 
 var mongoose = require('mongoose');
 
+var TimeItemSchema = {
+    text: { type: String, trim: true },
+    accepted: Boolean
+};
+
 var requestSchema = mongoose.Schema({
     fromUser: {
         type: {
             id: mongoose.Schema.ObjectId,
-            displayName: 'string',
-            avatarUrl: 'string'
+            displayName: String,
+            avatarUrl: String
         },
         required:'{PATH} is required!'
     },
     toUser: {
         type: {
             id: mongoose.Schema.ObjectId,
-            displayName: 'string',
-            avatarUrl: 'string'
+            displayName: String,
+            avatarUrl: String
         },
         required:'{PATH} is required!'
     },
@@ -23,8 +28,9 @@ var requestSchema = mongoose.Schema({
     sentDateTime: Date,
     responseDateTime: Date,
     message: String,
-    timeList: [String]
+    timeList: [TimeItemSchema]
 });
+
 
 requestSchema.methods = {
 
